@@ -1,0 +1,25 @@
+import { ProductCoverImage } from "@/app/ui/atoms/ProductCoverImage";
+import { ProductDescription } from "@/app/ui/atoms/ProductDescription";
+
+interface ProductListItemProps {
+	product: {
+		category: string;
+		name: string;
+		price: number;
+		image: {
+			src: string;
+			alt: string;
+		};
+	};
+}
+
+export const ProductListItem = ({ product }: ProductListItemProps) => {
+	return (
+		<li>
+			<article>
+				<ProductCoverImage {...product.image} />
+				<ProductDescription product={product} />
+			</article>
+		</li>
+	);
+};
