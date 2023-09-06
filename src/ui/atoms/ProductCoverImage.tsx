@@ -8,8 +8,8 @@ export const ProductCoverImage = ({ src, alt }: ProductCoverImageProps) => {
 	return (
 		<div className="aspect-square overflow-hidden rounded-md bg-slate-50 hover:bg-slate-100">
 			<img
-				width={320}
-				height={320}
+				width={640}
+				height={640}
 				src={src}
 				alt={alt}
 				className="h-full object-cover object-center p-4 "
