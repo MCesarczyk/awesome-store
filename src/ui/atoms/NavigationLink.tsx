@@ -1,11 +1,12 @@
 "use client";
 
 import clsx from "clsx";
+import { type Route } from "next";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 interface NavigationLinkProps {
-	href: string;
+	href: Route;
 	children: React.ReactNode;
 }
 
