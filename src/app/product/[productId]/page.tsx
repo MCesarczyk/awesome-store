@@ -1,16 +1,20 @@
-"use client";
-
-import { useParams } from "next/navigation";
+import { type Metadata } from "next";
 import { ProductCoverImage } from "@/ui/atoms/ProductCoverImage";
 import { ProductDescription } from "@/ui/atoms/ProductDescription";
 import { products } from "@/app/products";
 
-export default function Product() {
-	const { id } = useParams();
+interface MetadataProps {
+	params: { productId: string };
+}
 
-	document.title = `Product: ${String(id)}`;
+export async function generateMetadata({ params }: MetadataProps): Promise<Metadata> {
+	return {
+		title: `Product ${params.productId}`,
+	};
+}
 
-	const product = products.find((product) => product.id === +id);
+export default function Product({ params }: MetadataProps) {
+	const product = products.find((product) => product.id === +params.productId);
 
 	if (!product) {
 		return <h2>Product not found</h2>;
@@ -19,7 +23,7 @@ export default function Product() {
 	return (
 		<section className="mx-auto max-w-md p-12 sm:max-w-2xl sm:py-2">
 			<header>
-				<h1>Product: {id}</h1>
+				<h1>Product: {params.productId}</h1>
 			</header>
 			<p>
 				<ProductCoverImage {...product.image} />
