@@ -1,5 +1,6 @@
 "use client";
 
+import clsx from "clsx";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -14,9 +15,10 @@ export const NavigationLink = ({ href, children }: NavigationLinkProps) => {
 	return (
 		<Link
 			href={href}
-			className={`text-2xl font-bold text-white hover:text-slate-500 ${
-				pathname === href && "border-b-2 border-b-white"
-			}`}
+			className={clsx(
+				`text-2xl font-bold text-white hover:text-slate-500`,
+				pathname === href && "border-b-2 border-b-white",
+			)}
 		>
 			{children}
 		</Link>
