@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { Pagination } from "@/ui/organisms/Pagination";
 import { ProductsList } from "@/ui/organisms/ProductList";
 
@@ -6,8 +7,12 @@ export default async function ProductsPage() {
 		<section>
 			<h2 className="mb-4 text-xl font-bold">Lista produktów</h2>
 			<ul>
-				<ProductsList page={1} />
-				<ProductsList page={2} />
+				<Suspense>
+					<ProductsList page={1} />
+				</Suspense>
+				<Suspense>
+					<ProductsList page={2} />
+				</Suspense>
 			</ul>
 			<footer>
 				<Pagination />
