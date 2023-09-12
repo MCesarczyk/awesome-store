@@ -1,18 +1,21 @@
-"use client";
-
-import { products } from "@/app/products";
 import { Pagination } from "@/ui/organisms/Pagination";
-import { ProductList } from "@/ui/organisms/ProductList";
+import { productsApi } from "@/api/poductsApi";
 
-export default function Products() {
-	document.title = "Product list";
+export default async function Products() {
+	const products = await productsApi.getProducts();
 
 	return (
 		<>
 			<section className="mx-auto max-w-md p-12 sm:max-w-2xl sm:py-2">
-				<ProductList products={products} />
+				<ul>
+					{products.map((product) => (
+						<li key={product.id}>{product.title}</li>
+					))}
+				</ul>
 			</section>
-			<Pagination />
+			<footer>
+				<Pagination />
+			</footer>
 		</>
 	);
 }
