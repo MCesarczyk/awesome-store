@@ -1,21 +1,17 @@
 import { Pagination } from "@/ui/organisms/Pagination";
-import { productsApi } from "@/api/poductsApi";
+import { ProductsList } from "@/ui/organisms/ProductList";
 
-export default async function Products() {
-	const products = await productsApi.getProducts();
-
+export default async function ProductsPage() {
 	return (
-		<>
-			<section className="mx-auto max-w-md p-12 sm:max-w-2xl sm:py-2">
-				<ul>
-					{products.map((product) => (
-						<li key={product.id}>{product.title}</li>
-					))}
-				</ul>
-			</section>
+		<section>
+			<h2 className="mb-4 text-xl font-bold">Lista produktów</h2>
+			<ul>
+				<ProductsList page={1} />
+				<ProductsList page={2} />
+			</ul>
 			<footer>
 				<Pagination />
 			</footer>
-		</>
+		</section>
 	);
 }

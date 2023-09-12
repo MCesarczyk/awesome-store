@@ -1,19 +1,20 @@
-import { ProductListItem } from "@/ui/molecules/ProductListItem";
-import type { ProductItem } from "@/ui/types";
+import { wait } from "@/utils";
 
-interface ProductListProps {
-	products: ProductItem[];
-}
-
-export const ProductList = ({ products }: ProductListProps) => {
-	return (
-		<ul
-			className="grid grid-cols-1 gap-6 sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
-			data-testid="products-list"
-		>
-			{products.map((product) => (
-				<ProductListItem key={product.id} product={product} />
-			))}
-		</ul>
+export async function ProductsList({ page }: { page: number }) {
+	const take = 10;
+	const offset = 10 * (page - 1);
+	const res = await fetch(
+		`https://naszsklep-api.vercel.app/api/products?offset=${offset}&take=${take}`,
 	);
-};
+	const products = (await res.json()) as { id: string; title: string }[];
+
+	await wait(5000 * Math.random());
+
+	return (
+		<>
+			{products.map((product) => (
+				<li key={product.id}>{product.title}</li>
+			))}
+		</>
+	);
+}
