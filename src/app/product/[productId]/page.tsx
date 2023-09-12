@@ -1,7 +1,5 @@
 import { type Metadata } from "next";
-import { ProductCoverImage } from "@/ui/atoms/ProductCoverImage";
-import { ProductDescription } from "@/ui/atoms/ProductDescription";
-import { products } from "@/app/products";
+import { productsApi } from "@/api/poductsApi";
 
 interface MetadataProps {
 	params: { productId: string };
@@ -13,22 +11,15 @@ export async function generateMetadata({ params }: MetadataProps): Promise<Metad
 	};
 }
 
-export default function Product({ params }: MetadataProps) {
-	const product = products.find((product) => product.id === +params.productId);
-
-	if (!product) {
-		return <h2>Product not found</h2>;
-	}
+export default async function Product({ params }: MetadataProps) {
+	const product = await productsApi.getProductById(params.productId);
 
 	return (
-		<section className="mx-auto max-w-md p-12 sm:max-w-2xl sm:py-2">
+		<section className="m-12 mx-auto max-w-md p-12 sm:max-w-2xl sm:py-2">
 			<header>
-				<h1>Product: {params.productId}</h1>
+				<h1 className="mb-4 text-xl font-bold">{product.title}</h1>
 			</header>
-			<p>
-				<ProductCoverImage {...product.image} />
-				<ProductDescription product={product} />
-			</p>
+			<p>{product.description}</p>
 		</section>
 	);
 }

@@ -1,19 +1,18 @@
+import Link from "next/link";
 import { wait } from "@/utils";
+import { productsApi } from "@/api/poductsApi";
 
 export async function ProductsList({ page }: { page: number }) {
-	const take = 10;
-	const offset = 10 * (page - 1);
-	const res = await fetch(
-		`https://naszsklep-api.vercel.app/api/products?offset=${offset}&take=${take}`,
-	);
-	const products = (await res.json()) as { id: string; title: string }[];
+	const products = await productsApi.getProducts(page);
 
-	await wait(5000 * Math.random());
+	await wait(5_000 * Math.random());
 
 	return (
 		<>
 			{products.map((product) => (
-				<li key={product.id}>{product.title}</li>
+				<li key={product.id}>
+					<Link href={`/product/${product.id}`}>{product.title}</Link>
+				</li>
 			))}
 		</>
 	);

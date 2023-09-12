@@ -5,7 +5,7 @@ import { ProductsList } from "@/ui/organisms/ProductList";
 export default async function ProductsPage() {
 	return (
 		<section>
-			<h2 className="mb-4 text-xl font-bold">Lista produktów</h2>
+			<h2 className="mb-4 text-xl font-bold">Products list</h2>
 			<ul>
 				<Suspense>
 					<ProductsList page={1} />
