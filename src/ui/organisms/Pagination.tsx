@@ -20,7 +20,7 @@ export const Pagination = async ({ page = 1, perPage = 10 }: PaginationProps) =>
 			className="flex flex-nowrap justify-center gap-4 py-6 text-2xl font-bold text-slate-600"
 			data-testid="pagination"
 		>
-			pagination {page}/{products.length}
+			pagination {page}/{pages}
 			{[...Array(pages).keys()].map((page, index) => (
 				<Link
 					key={page}

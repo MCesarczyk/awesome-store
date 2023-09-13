@@ -8,12 +8,12 @@ export async function ProductsList({ page }: { page: number }) {
 	await wait(5_000 * Math.random());
 
 	return (
-		<>
+		<ul>
 			{products.map((product) => (
 				<li key={product.id}>
 					<Link href={`/product/${product.id}`}>{product.title}</Link>
 				</li>
 			))}
-		</>
+		</ul>
 	);
 }

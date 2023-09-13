@@ -2,20 +2,25 @@ import { Suspense } from "react";
 import { Pagination } from "@/ui/organisms/Pagination";
 import { ProductsList } from "@/ui/organisms/ProductList";
 
-export default async function ProductsPage() {
+interface Props {
+	params: {};
+	searchParams: { [key: string]: string | string[] | undefined };
+}
+
+export default async function ProductsPage(props: Props) {
+	const searchParams = props.searchParams;
+	const page = searchParams.page ? Number(searchParams.page) : 1;
+
 	return (
 		<section>
-			<h2 className="mb-4 text-xl font-bold">Products list</h2>
-			<ul>
+			<h1 className="mb-4 text-3xl font-bold">Products list</h1>
+			<p className="border-r-12 mb-8 bg-slate-100 px-16 py-8">
 				<Suspense>
-					<ProductsList page={1} />
+					<ProductsList page={page} />
 				</Suspense>
-				<Suspense>
-					<ProductsList page={2} />
-				</Suspense>
-			</ul>
+			</p>
 			<footer>
-				<Pagination />
+				<Pagination page={page} />
 			</footer>
 		</section>
 	);
