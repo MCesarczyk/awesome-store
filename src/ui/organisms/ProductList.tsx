@@ -8,7 +8,7 @@ export async function ProductsList({ page }: { page: number }) {
 	await wait(5_000 * Math.random());
 
 	return (
-		<ul>
+		<ul data-testid="products-list">
 			{products.map((product) => (
 				<li key={product.id}>
 					<Link href={`/product/${product.id}`}>{product.title}</Link>

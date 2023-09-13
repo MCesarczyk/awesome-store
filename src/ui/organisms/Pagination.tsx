@@ -16,7 +16,7 @@ export const Pagination = async ({ page = 1, perPage = 10 }: PaginationProps) =>
 	}
 
 	return (
-		<label
+		<nav
 			className="flex flex-nowrap justify-center gap-4 py-6 text-2xl font-bold text-slate-600"
 			data-testid="pagination"
 		>
@@ -30,6 +30,6 @@ export const Pagination = async ({ page = 1, perPage = 10 }: PaginationProps) =>
 					{index + 1}
 				</Link>
 			))}
-		</label>
+		</nav>
 	);
 };

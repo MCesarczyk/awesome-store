@@ -1,10 +1,6 @@
 import { type Metadata } from "next";
 import { productsApi } from "@/api/poductsApi";
 
-interface MetadataProps {
-	params: { productId: string };
-}
-
 export const generateStaticParams = async () => {
 	const products = await productsApi.getProductsByPage(1);
 	return products.map((product) => ({
@@ -12,9 +8,15 @@ export const generateStaticParams = async () => {
 	}));
 };
 
+interface MetadataProps {
+	params: { productId: string };
+}
+
 export async function generateMetadata({ params }: MetadataProps): Promise<Metadata> {
+	const product = await productsApi.getProductById(params.productId);
+
 	return {
-		title: `Product ${params.productId}`,
+		title: product.title,
 	};
 }
 
