@@ -3,7 +3,7 @@ import { wait } from "@/utils";
 import { productsApi } from "@/api/poductsApi";
 
 export async function ProductsList({ page }: { page: number }) {
-	const products = await productsApi.getProducts(page);
+	const products = await productsApi.getProductsByPage(page);
 
 	await wait(5_000 * Math.random());
 

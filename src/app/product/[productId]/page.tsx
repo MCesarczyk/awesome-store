@@ -5,6 +5,13 @@ interface MetadataProps {
 	params: { productId: string };
 }
 
+export const generateStaticParams = async () => {
+	const products = await productsApi.getProductsByPage(1);
+	return products.map((product) => ({
+		productId: product.id,
+	}));
+};
+
 export async function generateMetadata({ params }: MetadataProps): Promise<Metadata> {
 	return {
 		title: `Product ${params.productId}`,

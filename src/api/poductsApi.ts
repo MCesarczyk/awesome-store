@@ -1,7 +1,15 @@
 import { API_URL } from "@/api/urls";
 
 export const productsApi = {
-  getProducts: async (page: number, perPage: number = 10) => {
+  getProducts: async () => {
+    const res = await fetch(API_URL.getProducts);
+
+    const products = (await res.json()) as { id: string; title: string }[];
+
+    return products;
+  },
+
+  getProductsByPage: async (page: number, perPage: number = 10) => {
     const take = perPage;
     const offset = perPage * (page - 1);
 
