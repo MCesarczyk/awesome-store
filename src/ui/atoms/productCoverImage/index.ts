@@ -1,0 +1,2 @@
+
+export { ProductCoverImage } from './ProductCoverImage'
