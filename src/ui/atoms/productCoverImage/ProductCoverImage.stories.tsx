@@ -22,6 +22,11 @@ const Template: StoryFn<ComponentProps<typeof ProductCoverImage>> = (args) => (
 
 export const Default = Template.bind({});
 Default.args = {
-  src: 'https://picsum.photos/640/640',
-  alt: 'Product',
+  image: {
+      id: '1',
+      attributes: {
+      url: 'https://picsum.photos/640/640',
+      alternativeText: 'Product',
+    }
+  }
 };

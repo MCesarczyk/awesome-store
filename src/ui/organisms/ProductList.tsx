@@ -1,18 +1,18 @@
-import Link from "next/link";
-import { wait } from "@/utils";
 import { productsApi } from "@/api/poductsApi";
+import { ProductListItem } from "@/ui/molecules";
 
-export async function ProductsList({ page }: { page: number }) {
-	const products = await productsApi.getProductsByPage(page);
+interface ProductsListProps {
+	page: number;
+	perPage?: number;
+}
 
-	await wait(5_000 * Math.random());
+export async function ProductsList({ }: ProductsListProps) {
+	const products = await productsApi.getProductsList();
 
 	return (
-		<ul data-testid="products-list">
+		<ul data-testid="products-list" className="flex flex-wrap gap-8 mx-auto">
 			{products.map((product) => (
-				<li key={product.id}>
-					<Link href={`/product/${product.id}`}>{product.title}</Link>
-				</li>
+				<ProductListItem key={product.id} product={product} />
 			))}
 		</ul>
 	);

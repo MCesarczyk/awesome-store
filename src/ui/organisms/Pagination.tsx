@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { productsApi } from "@/api/poductsApi";
+// import { productsApi } from "@/api/poductsApi";
 
 interface PaginationProps {
 	page?: number;
@@ -7,7 +7,8 @@ interface PaginationProps {
 }
 
 export const Pagination = async ({ page = 1, perPage = 10 }: PaginationProps) => {
-	const products = await productsApi.getProducts();
+	// const products = await productsApi.getProducts();
+	const products = [1,2,3,4,5];
 
 	const pages = Math.ceil(products.length / perPage);
 

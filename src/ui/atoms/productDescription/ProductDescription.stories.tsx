@@ -23,8 +23,11 @@ const Template: StoryFn<ComponentProps<typeof ProductDescription>> = (args) => (
 export const Default = Template.bind({});
 Default.args = {
   product: {
-    category: 'Accessories',
-    name: 'Basic Tee',
+    id: "1",
+    attributes: {
+      name: 'Basic Tee',
+    categories: {data:[{id:'1', attributes:{name:'Accessories',slug:'accessories',description:''}}]},
     price: 29,
+    }
   },
 };

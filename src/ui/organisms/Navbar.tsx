@@ -1,4 +1,4 @@
-import { NavigationLink } from "@/ui/atoms/NavigationLink";
+import { NavigationLink } from "@/ui/atoms/navigationLink";
 
 export const Navbar = () => (
 	<nav className="w-full bg-blue-700 px-6 py-3 text-white">
