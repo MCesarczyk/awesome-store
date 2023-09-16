@@ -6,8 +6,8 @@ interface ProductsListProps {
 	perPage?: number;
 }
 
-export async function ProductsList({ }: ProductsListProps) {
-	const products = await productsApi.getProductsList();
+export async function ProductsList({ page, perPage }: ProductsListProps) {
+	const products = await productsApi.getProductsList(page, perPage);
 
 	return (
 		<ul data-testid="products-list" className="flex flex-wrap gap-8 mx-auto">
