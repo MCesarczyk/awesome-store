@@ -11,6 +11,7 @@ query ProductsGetList($first: Int, $skip: Int) {
     images {
       id
       url
+      alt
     }
     price
   }

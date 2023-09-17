@@ -16,7 +16,7 @@ export default async function ProductsPage(props: Props) {
 			<h1 className="mb-4 text-3xl font-bold">Products list</h1>
 			<p className="border-r-12 mb-8 bg-slate-100 px-16 py-8">
 				<Suspense>
-					<ProductsList page={page} />
+					<ProductsList page={page} perPage={8} />
 				</Suspense>
 			</p>
 			<footer>

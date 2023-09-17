@@ -1,5 +1,6 @@
 import Link from "next/link";
-// import { productsApi } from "@/api/poductsApi";
+import { executeGraphql } from "@/api/executeGraphql";
+import { ProductsGetListDocument } from "@/gql/graphql";
 
 interface PaginationProps {
 	page?: number;
@@ -7,10 +8,9 @@ interface PaginationProps {
 }
 
 export const Pagination = async ({ page = 1, perPage = 10 }: PaginationProps) => {
-	// const products = await productsApi.getProducts();
-	const products = [1,2,3,4,5];
+	const { products } = await executeGraphql(ProductsGetListDocument, {});
 
-	const pages = Math.ceil(products.length / perPage);
+	const pages = products ? Math.ceil(products.length / perPage) : 1;
 
 	if (!pages) {
 		return null;

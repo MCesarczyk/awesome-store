@@ -5,6 +5,7 @@ export type GraphqlResponse<T> =
 export interface Image {
   id: string;
   url: string;
+  alt: string;
 }
 
 export interface Category {

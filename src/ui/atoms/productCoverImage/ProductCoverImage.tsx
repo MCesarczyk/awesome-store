@@ -12,7 +12,7 @@ export const ProductCoverImage = ({ image }: ProductCoverImageProps) => {
 			<img
 				width={640}
 				height={640}
-				src={image.url}
+				src={image?.url}
 				alt={"sample image"}
 				className="h-full object-cover object-center p-4 "
 			/>

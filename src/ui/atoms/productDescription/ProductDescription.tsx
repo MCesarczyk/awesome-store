@@ -4,7 +4,7 @@ interface ProductDescriptionProps {
 	product: {
 		id: string;
 		name: string;
-		categories: Category[];
+		categories: Category[] | null | undefined;
 		price: number;
 	};
 }
@@ -18,7 +18,7 @@ export const ProductDescription = ({
 				<h3 className="text-sm font-semibold text-gray-700">{product.name}</h3>
 				<p className="text-sm text-gray-500">
 					<span className="sr-only">Category:</span>
-					{product.categories[0].name}
+					{product.categories && product.categories[0]?.name}
 				</p>
 			</div>
 			<p className="text-sm font-medium text-gray-900">
