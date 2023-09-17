@@ -1,4 +1,5 @@
-import { productsApi } from "@/api/poductsApi";
+import { executeGraphql } from "@/api/executeGraphql";
+import { ProductsGetListDocument } from "@/gql/graphql";
 import { ProductListItem } from "@/ui/molecules";
 
 interface ProductsListProps {
@@ -6,8 +7,8 @@ interface ProductsListProps {
 	perPage?: number;
 }
 
-export async function ProductsList({ page, perPage }: ProductsListProps) {
-	const products = await productsApi.getProductsList(page, perPage);
+export async function ProductsList({  }: ProductsListProps) {
+	const { products } = await executeGraphql(ProductsGetListDocument);
 
 	return (
 		<ul data-testid="products-list" className="flex flex-wrap gap-8 mx-auto">

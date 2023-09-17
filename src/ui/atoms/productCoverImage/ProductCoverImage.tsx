@@ -2,10 +2,8 @@
 interface ProductCoverImageProps {
 	image: {
 		id: string;
-		attributes: {
-			url: string;
-			alternativeText: string;
-		};
+		url: string;
+		alt: string;
 	}
 }
 
@@ -15,8 +13,8 @@ export const ProductCoverImage = ({ image }: ProductCoverImageProps) => {
 			<img
 				width={640}
 				height={640}
-				src={`https://api.hyperfunctor.com${image.attributes.url}`}
-				alt={image.attributes.alternativeText || "sample image"}
+				src={image.url}
+				alt={image.alt || "sample image"}
 				className="h-full object-cover object-center p-4 "
 			/>
 		</div>

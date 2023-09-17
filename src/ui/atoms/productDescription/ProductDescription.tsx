@@ -1,13 +1,11 @@
-import { type Category } from "@/ui/types";
+import { type Category } from "@/types";
 
 interface ProductDescriptionProps {
 	product: {
 		id: string;
-		attributes: {
-			name: string;
-			categories: { data: Category[]};
-			price: number;
-		};
+		name: string;
+		categories: Category[];
+		price: number;
 	};
 }
 
@@ -17,14 +15,14 @@ export const ProductDescription = ({
 	return (
 		<div className="mt-2 flex justify-between">
 			<div>
-				<h3 className="text-sm font-semibold text-gray-700">{product.attributes.name}</h3>
+				<h3 className="text-sm font-semibold text-gray-700">{product.name}</h3>
 				<p className="text-sm text-gray-500">
 					<span className="sr-only">Category:</span>
-					{product.attributes.categories.data[0]?.attributes.name}
+					{product.categories[0].name}
 				</p>
 			</div>
 			<p className="text-sm font-medium text-gray-900">
-				<span className="sr-only">Price:</span>${product.attributes.price}
+				<span className="sr-only">Price:</span>${product.price}
 			</p>
 		</div>
 	);

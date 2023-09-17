@@ -1,34 +1,34 @@
-import { type Metadata } from "next";
-import { productsApi } from "@/api/poductsApi";
+// import { type Metadata } from "next";
+// import { productsApi } from "@/api/poductsApi";
 
-export const generateStaticParams = async () => {
-	const products = await productsApi.getProductsByPage(1);
-	return products.map((product) => ({
-		productId: product.id,
-	}));
-};
+// export const generateStaticParams = async () => {
+// 	const products = await productsApi.getProductsByPage(1);
+// 	return products.map((product) => ({
+// 		productId: product.id,
+// 	}));
+// };
 
 interface MetadataProps {
 	params: { productId: string };
 }
 
-export async function generateMetadata({ params }: MetadataProps): Promise<Metadata> {
-	const product = await productsApi.getProductById(params.productId);
+// export async function generateMetadata({ params }: MetadataProps): Promise<Metadata> {
+// 	const product = await productsApi.getProductById(params.productId);
 
-	return {
-		title: product.title,
-	};
-}
+// 	return {
+// 		title: product.title,
+// 	};
+// }
 
-export default async function Product({ params }: MetadataProps) {
-	const product = await productsApi.getProductById(params.productId);
+export default async function Product({  }: MetadataProps) {
+	// const product = await productsApi.getProductById(params.productId);
 
 	return (
 		<section className="m-12 mx-auto max-w-md p-12 sm:max-w-2xl sm:py-2">
 			<header>
-				<h1 className="mb-4 text-xl font-bold">{product.title}</h1>
+				<h1 className="mb-4 text-xl font-bold">{'product.title'}</h1>
 			</header>
-			<p>{product.description}</p>
+			<p>{'product.description'}</p>
 		</section>
 	);
 }

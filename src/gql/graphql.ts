@@ -1,4 +1,5 @@
 /* eslint-disable */
+import type { DocumentTypeDecoration } from '@graphql-typed-document-node/core';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -14,18 +15,18 @@ export type Scalars = {
   Int: { input: number; output: number; }
   Float: { input: number; output: number; }
   /** A date string, such as 2007-12-03 (YYYY-MM-DD), compliant with ISO 8601 standard for representation of dates using the Gregorian calendar. */
-  Date: { input: any; output: any; }
+  Date: { input: unknown; output: unknown; }
   /** A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the date-timeformat outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representationof dates and times using the Gregorian calendar. */
-  DateTime: { input: any; output: any; }
-  Hex: { input: any; output: any; }
+  DateTime: { input: unknown; output: unknown; }
+  Hex: { input: unknown; output: unknown; }
   /** Raw JSON value */
-  Json: { input: any; output: any; }
+  Json: { input: unknown; output: unknown; }
   /** The Long scalar type represents non-fractional signed whole numeric values. Long can represent values between -(2^63) and 2^63 - 1. */
-  Long: { input: any; output: any; }
-  RGBAHue: { input: any; output: any; }
-  RGBATransparency: { input: any; output: any; }
+  Long: { input: unknown; output: unknown; }
+  RGBAHue: { input: unknown; output: unknown; }
+  RGBATransparency: { input: unknown; output: unknown; }
   /** Slate-compatible RichText AST */
-  RichTextAST: { input: any; output: any; }
+  RichTextAST: { input: unknown; output: unknown; }
 };
 
 export type Aggregate = {
@@ -356,28 +357,27 @@ export type AssetManyWhereInput = {
   updatedBy?: InputMaybe<UserWhereInput>;
 };
 
-export enum AssetOrderByInput {
-  CreatedAtAsc = 'createdAt_ASC',
-  CreatedAtDesc = 'createdAt_DESC',
-  FileNameAsc = 'fileName_ASC',
-  FileNameDesc = 'fileName_DESC',
-  HandleAsc = 'handle_ASC',
-  HandleDesc = 'handle_DESC',
-  HeightAsc = 'height_ASC',
-  HeightDesc = 'height_DESC',
-  IdAsc = 'id_ASC',
-  IdDesc = 'id_DESC',
-  MimeTypeAsc = 'mimeType_ASC',
-  MimeTypeDesc = 'mimeType_DESC',
-  PublishedAtAsc = 'publishedAt_ASC',
-  PublishedAtDesc = 'publishedAt_DESC',
-  SizeAsc = 'size_ASC',
-  SizeDesc = 'size_DESC',
-  UpdatedAtAsc = 'updatedAt_ASC',
-  UpdatedAtDesc = 'updatedAt_DESC',
-  WidthAsc = 'width_ASC',
-  WidthDesc = 'width_DESC'
-}
+export type AssetOrderByInput =
+  | 'createdAt_ASC'
+  | 'createdAt_DESC'
+  | 'fileName_ASC'
+  | 'fileName_DESC'
+  | 'handle_ASC'
+  | 'handle_DESC'
+  | 'height_ASC'
+  | 'height_DESC'
+  | 'id_ASC'
+  | 'id_DESC'
+  | 'mimeType_ASC'
+  | 'mimeType_DESC'
+  | 'publishedAt_ASC'
+  | 'publishedAt_DESC'
+  | 'size_ASC'
+  | 'size_DESC'
+  | 'updatedAt_ASC'
+  | 'updatedAt_DESC'
+  | 'width_ASC'
+  | 'width_DESC';
 
 /** Transformations for Assets */
 export type AssetTransformationInput = {
@@ -1026,22 +1026,21 @@ export type CategoryManyWhereInput = {
   updatedBy?: InputMaybe<UserWhereInput>;
 };
 
-export enum CategoryOrderByInput {
-  CreatedAtAsc = 'createdAt_ASC',
-  CreatedAtDesc = 'createdAt_DESC',
-  DescriptionAsc = 'description_ASC',
-  DescriptionDesc = 'description_DESC',
-  IdAsc = 'id_ASC',
-  IdDesc = 'id_DESC',
-  NameAsc = 'name_ASC',
-  NameDesc = 'name_DESC',
-  PublishedAtAsc = 'publishedAt_ASC',
-  PublishedAtDesc = 'publishedAt_DESC',
-  SlugAsc = 'slug_ASC',
-  SlugDesc = 'slug_DESC',
-  UpdatedAtAsc = 'updatedAt_ASC',
-  UpdatedAtDesc = 'updatedAt_DESC'
-}
+export type CategoryOrderByInput =
+  | 'createdAt_ASC'
+  | 'createdAt_DESC'
+  | 'description_ASC'
+  | 'description_DESC'
+  | 'id_ASC'
+  | 'id_DESC'
+  | 'name_ASC'
+  | 'name_DESC'
+  | 'publishedAt_ASC'
+  | 'publishedAt_DESC'
+  | 'slug_ASC'
+  | 'slug_DESC'
+  | 'updatedAt_ASC'
+  | 'updatedAt_DESC';
 
 export type CategoryUpdateInput = {
   /** description input for default locale (en) */
@@ -1627,22 +1626,21 @@ export type CollectionManyWhereInput = {
   updatedBy?: InputMaybe<UserWhereInput>;
 };
 
-export enum CollectionOrderByInput {
-  CreatedAtAsc = 'createdAt_ASC',
-  CreatedAtDesc = 'createdAt_DESC',
-  DescriptionAsc = 'description_ASC',
-  DescriptionDesc = 'description_DESC',
-  IdAsc = 'id_ASC',
-  IdDesc = 'id_DESC',
-  NameAsc = 'name_ASC',
-  NameDesc = 'name_DESC',
-  PublishedAtAsc = 'publishedAt_ASC',
-  PublishedAtDesc = 'publishedAt_DESC',
-  SlugAsc = 'slug_ASC',
-  SlugDesc = 'slug_DESC',
-  UpdatedAtAsc = 'updatedAt_ASC',
-  UpdatedAtDesc = 'updatedAt_DESC'
-}
+export type CollectionOrderByInput =
+  | 'createdAt_ASC'
+  | 'createdAt_DESC'
+  | 'description_ASC'
+  | 'description_DESC'
+  | 'id_ASC'
+  | 'id_DESC'
+  | 'name_ASC'
+  | 'name_DESC'
+  | 'publishedAt_ASC'
+  | 'publishedAt_DESC'
+  | 'slug_ASC'
+  | 'slug_DESC'
+  | 'updatedAt_ASC'
+  | 'updatedAt_DESC';
 
 export type CollectionUpdateInput = {
   /** description input for default locale (en) */
@@ -2203,22 +2201,21 @@ export type CurrencyManyWhereInput = {
   updatedBy?: InputMaybe<UserWhereInput>;
 };
 
-export enum CurrencyOrderByInput {
-  CodeAsc = 'code_ASC',
-  CodeDesc = 'code_DESC',
-  CreatedAtAsc = 'createdAt_ASC',
-  CreatedAtDesc = 'createdAt_DESC',
-  DefaultAsc = 'default_ASC',
-  DefaultDesc = 'default_DESC',
-  IdAsc = 'id_ASC',
-  IdDesc = 'id_DESC',
-  PublishedAtAsc = 'publishedAt_ASC',
-  PublishedAtDesc = 'publishedAt_DESC',
-  RateAsc = 'rate_ASC',
-  RateDesc = 'rate_DESC',
-  UpdatedAtAsc = 'updatedAt_ASC',
-  UpdatedAtDesc = 'updatedAt_DESC'
-}
+export type CurrencyOrderByInput =
+  | 'code_ASC'
+  | 'code_DESC'
+  | 'createdAt_ASC'
+  | 'createdAt_DESC'
+  | 'default_ASC'
+  | 'default_DESC'
+  | 'id_ASC'
+  | 'id_DESC'
+  | 'publishedAt_ASC'
+  | 'publishedAt_DESC'
+  | 'rate_ASC'
+  | 'rate_DESC'
+  | 'updatedAt_ASC'
+  | 'updatedAt_DESC';
 
 export type CurrencyUpdateInput = {
   code?: InputMaybe<Scalars['String']['input']>;
@@ -2439,24 +2436,23 @@ export type CurrencyWhereUniqueInput = {
   id?: InputMaybe<Scalars['ID']['input']>;
 };
 
-export enum DocumentFileTypes {
-  Doc = 'doc',
-  Docx = 'docx',
-  Html = 'html',
-  Jpg = 'jpg',
-  Odp = 'odp',
-  Ods = 'ods',
-  Odt = 'odt',
-  Pdf = 'pdf',
-  Png = 'png',
-  Ppt = 'ppt',
-  Pptx = 'pptx',
-  Svg = 'svg',
-  Txt = 'txt',
-  Webp = 'webp',
-  Xls = 'xls',
-  Xlsx = 'xlsx'
-}
+export type DocumentFileTypes =
+  | 'doc'
+  | 'docx'
+  | 'html'
+  | 'jpg'
+  | 'odp'
+  | 'ods'
+  | 'odt'
+  | 'pdf'
+  | 'png'
+  | 'ppt'
+  | 'pptx'
+  | 'svg'
+  | 'txt'
+  | 'webp'
+  | 'xls'
+  | 'xlsx';
 
 export type DocumentOutputInput = {
   /**
@@ -2503,16 +2499,15 @@ export type DocumentVersion = {
   stage: Stage;
 };
 
-export enum ImageFit {
+export type ImageFit =
   /** Resizes the image to fit within the specified parameters without distorting, cropping, or changing the aspect ratio. */
-  Clip = 'clip',
+  | 'clip'
   /** Resizes the image to fit the specified parameters exactly by removing any parts of the image that don't fit within the boundaries. */
-  Crop = 'crop',
+  | 'crop'
   /** Resizes the image to fit within the parameters, but as opposed to 'fit:clip' will not scale the image if the image is smaller than the output size. */
-  Max = 'max',
+  | 'max'
   /** Resizes the image to fit the specified parameters exactly by scaling the image to the desired size. The aspect ratio of the image is not respected and the image can be distorted using this method. */
-  Scale = 'scale'
-}
+  | 'scale';
 
 export type ImageResizeInput = {
   /** The default value for the fit parameter is fit:clip. */
@@ -2530,10 +2525,9 @@ export type ImageTransformationInput = {
 };
 
 /** Locale system enumeration */
-export enum Locale {
+export type Locale =
   /** System locale */
-  En = 'en'
-}
+  | 'en';
 
 /** Representing a geolocation point with latitude and longitude */
 export type Location = {
@@ -4907,20 +4901,19 @@ export type OrderItemManyWhereInput = {
   updatedBy?: InputMaybe<UserWhereInput>;
 };
 
-export enum OrderItemOrderByInput {
-  CreatedAtAsc = 'createdAt_ASC',
-  CreatedAtDesc = 'createdAt_DESC',
-  IdAsc = 'id_ASC',
-  IdDesc = 'id_DESC',
-  PublishedAtAsc = 'publishedAt_ASC',
-  PublishedAtDesc = 'publishedAt_DESC',
-  QuantityAsc = 'quantity_ASC',
-  QuantityDesc = 'quantity_DESC',
-  TotalAsc = 'total_ASC',
-  TotalDesc = 'total_DESC',
-  UpdatedAtAsc = 'updatedAt_ASC',
-  UpdatedAtDesc = 'updatedAt_DESC'
-}
+export type OrderItemOrderByInput =
+  | 'createdAt_ASC'
+  | 'createdAt_DESC'
+  | 'id_ASC'
+  | 'id_DESC'
+  | 'publishedAt_ASC'
+  | 'publishedAt_DESC'
+  | 'quantity_ASC'
+  | 'quantity_DESC'
+  | 'total_ASC'
+  | 'total_DESC'
+  | 'updatedAt_ASC'
+  | 'updatedAt_DESC';
 
 export type OrderItemUpdateInput = {
   order?: InputMaybe<OrderUpdateOneInlineInput>;
@@ -5277,22 +5270,21 @@ export type OrderManyWhereInput = {
   updatedBy?: InputMaybe<UserWhereInput>;
 };
 
-export enum OrderOrderByInput {
-  CreatedAtAsc = 'createdAt_ASC',
-  CreatedAtDesc = 'createdAt_DESC',
-  EmailAsc = 'email_ASC',
-  EmailDesc = 'email_DESC',
-  IdAsc = 'id_ASC',
-  IdDesc = 'id_DESC',
-  PublishedAtAsc = 'publishedAt_ASC',
-  PublishedAtDesc = 'publishedAt_DESC',
-  StripeCheckoutIdAsc = 'stripeCheckoutId_ASC',
-  StripeCheckoutIdDesc = 'stripeCheckoutId_DESC',
-  TotalAsc = 'total_ASC',
-  TotalDesc = 'total_DESC',
-  UpdatedAtAsc = 'updatedAt_ASC',
-  UpdatedAtDesc = 'updatedAt_DESC'
-}
+export type OrderOrderByInput =
+  | 'createdAt_ASC'
+  | 'createdAt_DESC'
+  | 'email_ASC'
+  | 'email_DESC'
+  | 'id_ASC'
+  | 'id_DESC'
+  | 'publishedAt_ASC'
+  | 'publishedAt_DESC'
+  | 'stripeCheckoutId_ASC'
+  | 'stripeCheckoutId_DESC'
+  | 'total_ASC'
+  | 'total_DESC'
+  | 'updatedAt_ASC'
+  | 'updatedAt_DESC';
 
 export type OrderUpdateInput = {
   email?: InputMaybe<Scalars['String']['input']>;
@@ -5728,11 +5720,10 @@ export type ProductVariantsArgs = {
   skip?: InputMaybe<Scalars['Int']['input']>;
 };
 
-export enum ProductColor {
-  Black = 'BLACK',
-  Pink = 'PINK',
-  Purple = 'PURPLE'
-}
+export type ProductColor =
+  | 'BLACK'
+  | 'PINK'
+  | 'PURPLE';
 
 export type ProductColorVariant = Node & {
   __typename?: 'ProductColorVariant';
@@ -5998,20 +5989,19 @@ export type ProductColorVariantManyWhereInput = {
   updatedBy?: InputMaybe<UserWhereInput>;
 };
 
-export enum ProductColorVariantOrderByInput {
-  ColorAsc = 'color_ASC',
-  ColorDesc = 'color_DESC',
-  CreatedAtAsc = 'createdAt_ASC',
-  CreatedAtDesc = 'createdAt_DESC',
-  IdAsc = 'id_ASC',
-  IdDesc = 'id_DESC',
-  NameAsc = 'name_ASC',
-  NameDesc = 'name_DESC',
-  PublishedAtAsc = 'publishedAt_ASC',
-  PublishedAtDesc = 'publishedAt_DESC',
-  UpdatedAtAsc = 'updatedAt_ASC',
-  UpdatedAtDesc = 'updatedAt_DESC'
-}
+export type ProductColorVariantOrderByInput =
+  | 'color_ASC'
+  | 'color_DESC'
+  | 'createdAt_ASC'
+  | 'createdAt_DESC'
+  | 'id_ASC'
+  | 'id_DESC'
+  | 'name_ASC'
+  | 'name_DESC'
+  | 'publishedAt_ASC'
+  | 'publishedAt_DESC'
+  | 'updatedAt_ASC'
+  | 'updatedAt_DESC';
 
 export type ProductColorVariantUpdateInput = {
   color?: InputMaybe<ProductColor>;
@@ -6451,32 +6441,30 @@ export type ProductManyWhereInput = {
   variants_some?: InputMaybe<ProductVariantsWhereInput>;
 };
 
-export enum ProductOrderByInput {
-  CreatedAtAsc = 'createdAt_ASC',
-  CreatedAtDesc = 'createdAt_DESC',
-  DescriptionAsc = 'description_ASC',
-  DescriptionDesc = 'description_DESC',
-  IdAsc = 'id_ASC',
-  IdDesc = 'id_DESC',
-  NameAsc = 'name_ASC',
-  NameDesc = 'name_DESC',
-  PriceAsc = 'price_ASC',
-  PriceDesc = 'price_DESC',
-  PublishedAtAsc = 'publishedAt_ASC',
-  PublishedAtDesc = 'publishedAt_DESC',
-  SlugAsc = 'slug_ASC',
-  SlugDesc = 'slug_DESC',
-  UpdatedAtAsc = 'updatedAt_ASC',
-  UpdatedAtDesc = 'updatedAt_DESC'
-}
+export type ProductOrderByInput =
+  | 'createdAt_ASC'
+  | 'createdAt_DESC'
+  | 'description_ASC'
+  | 'description_DESC'
+  | 'id_ASC'
+  | 'id_DESC'
+  | 'name_ASC'
+  | 'name_DESC'
+  | 'price_ASC'
+  | 'price_DESC'
+  | 'publishedAt_ASC'
+  | 'publishedAt_DESC'
+  | 'slug_ASC'
+  | 'slug_DESC'
+  | 'updatedAt_ASC'
+  | 'updatedAt_DESC';
 
-export enum ProductSize {
-  Large = 'LARGE',
-  Medium = 'MEDIUM',
-  Small = 'SMALL',
-  Xl = 'XL',
-  Xs = 'XS'
-}
+export type ProductSize =
+  | 'LARGE'
+  | 'MEDIUM'
+  | 'SMALL'
+  | 'XL'
+  | 'XS';
 
 export type ProductSizeColorVariant = Node & {
   __typename?: 'ProductSizeColorVariant';
@@ -6751,22 +6739,21 @@ export type ProductSizeColorVariantManyWhereInput = {
   updatedBy?: InputMaybe<UserWhereInput>;
 };
 
-export enum ProductSizeColorVariantOrderByInput {
-  ColorAsc = 'color_ASC',
-  ColorDesc = 'color_DESC',
-  CreatedAtAsc = 'createdAt_ASC',
-  CreatedAtDesc = 'createdAt_DESC',
-  IdAsc = 'id_ASC',
-  IdDesc = 'id_DESC',
-  NameAsc = 'name_ASC',
-  NameDesc = 'name_DESC',
-  PublishedAtAsc = 'publishedAt_ASC',
-  PublishedAtDesc = 'publishedAt_DESC',
-  SizeAsc = 'size_ASC',
-  SizeDesc = 'size_DESC',
-  UpdatedAtAsc = 'updatedAt_ASC',
-  UpdatedAtDesc = 'updatedAt_DESC'
-}
+export type ProductSizeColorVariantOrderByInput =
+  | 'color_ASC'
+  | 'color_DESC'
+  | 'createdAt_ASC'
+  | 'createdAt_DESC'
+  | 'id_ASC'
+  | 'id_DESC'
+  | 'name_ASC'
+  | 'name_DESC'
+  | 'publishedAt_ASC'
+  | 'publishedAt_DESC'
+  | 'size_ASC'
+  | 'size_DESC'
+  | 'updatedAt_ASC'
+  | 'updatedAt_DESC';
 
 export type ProductSizeColorVariantUpdateInput = {
   color?: InputMaybe<ProductColor>;
@@ -7294,20 +7281,19 @@ export type ProductSizeVariantManyWhereInput = {
   updatedBy?: InputMaybe<UserWhereInput>;
 };
 
-export enum ProductSizeVariantOrderByInput {
-  CreatedAtAsc = 'createdAt_ASC',
-  CreatedAtDesc = 'createdAt_DESC',
-  IdAsc = 'id_ASC',
-  IdDesc = 'id_DESC',
-  NameAsc = 'name_ASC',
-  NameDesc = 'name_DESC',
-  PublishedAtAsc = 'publishedAt_ASC',
-  PublishedAtDesc = 'publishedAt_DESC',
-  SizeAsc = 'size_ASC',
-  SizeDesc = 'size_DESC',
-  UpdatedAtAsc = 'updatedAt_ASC',
-  UpdatedAtDesc = 'updatedAt_DESC'
-}
+export type ProductSizeVariantOrderByInput =
+  | 'createdAt_ASC'
+  | 'createdAt_DESC'
+  | 'id_ASC'
+  | 'id_DESC'
+  | 'name_ASC'
+  | 'name_DESC'
+  | 'publishedAt_ASC'
+  | 'publishedAt_DESC'
+  | 'size_ASC'
+  | 'size_DESC'
+  | 'updatedAt_ASC'
+  | 'updatedAt_DESC';
 
 export type ProductSizeVariantUpdateInput = {
   /** Manage document localizations */
@@ -8959,26 +8945,25 @@ export type ReviewManyWhereInput = {
   updatedBy?: InputMaybe<UserWhereInput>;
 };
 
-export enum ReviewOrderByInput {
-  ContentAsc = 'content_ASC',
-  ContentDesc = 'content_DESC',
-  CreatedAtAsc = 'createdAt_ASC',
-  CreatedAtDesc = 'createdAt_DESC',
-  EmailAsc = 'email_ASC',
-  EmailDesc = 'email_DESC',
-  HeadlineAsc = 'headline_ASC',
-  HeadlineDesc = 'headline_DESC',
-  IdAsc = 'id_ASC',
-  IdDesc = 'id_DESC',
-  NameAsc = 'name_ASC',
-  NameDesc = 'name_DESC',
-  PublishedAtAsc = 'publishedAt_ASC',
-  PublishedAtDesc = 'publishedAt_DESC',
-  RatingAsc = 'rating_ASC',
-  RatingDesc = 'rating_DESC',
-  UpdatedAtAsc = 'updatedAt_ASC',
-  UpdatedAtDesc = 'updatedAt_DESC'
-}
+export type ReviewOrderByInput =
+  | 'content_ASC'
+  | 'content_DESC'
+  | 'createdAt_ASC'
+  | 'createdAt_DESC'
+  | 'email_ASC'
+  | 'email_DESC'
+  | 'headline_ASC'
+  | 'headline_DESC'
+  | 'id_ASC'
+  | 'id_DESC'
+  | 'name_ASC'
+  | 'name_DESC'
+  | 'publishedAt_ASC'
+  | 'publishedAt_DESC'
+  | 'rating_ASC'
+  | 'rating_DESC'
+  | 'updatedAt_ASC'
+  | 'updatedAt_DESC';
 
 export type ReviewUpdateInput = {
   content?: InputMaybe<Scalars['String']['input']>;
@@ -9526,31 +9511,29 @@ export type ScheduledOperationManyWhereInput = {
   updatedBy?: InputMaybe<UserWhereInput>;
 };
 
-export enum ScheduledOperationOrderByInput {
-  CreatedAtAsc = 'createdAt_ASC',
-  CreatedAtDesc = 'createdAt_DESC',
-  DescriptionAsc = 'description_ASC',
-  DescriptionDesc = 'description_DESC',
-  ErrorMessageAsc = 'errorMessage_ASC',
-  ErrorMessageDesc = 'errorMessage_DESC',
-  IdAsc = 'id_ASC',
-  IdDesc = 'id_DESC',
-  PublishedAtAsc = 'publishedAt_ASC',
-  PublishedAtDesc = 'publishedAt_DESC',
-  StatusAsc = 'status_ASC',
-  StatusDesc = 'status_DESC',
-  UpdatedAtAsc = 'updatedAt_ASC',
-  UpdatedAtDesc = 'updatedAt_DESC'
-}
+export type ScheduledOperationOrderByInput =
+  | 'createdAt_ASC'
+  | 'createdAt_DESC'
+  | 'description_ASC'
+  | 'description_DESC'
+  | 'errorMessage_ASC'
+  | 'errorMessage_DESC'
+  | 'id_ASC'
+  | 'id_DESC'
+  | 'publishedAt_ASC'
+  | 'publishedAt_DESC'
+  | 'status_ASC'
+  | 'status_DESC'
+  | 'updatedAt_ASC'
+  | 'updatedAt_DESC';
 
 /** System Scheduled Operation Status */
-export enum ScheduledOperationStatus {
-  Canceled = 'CANCELED',
-  Completed = 'COMPLETED',
-  Failed = 'FAILED',
-  InProgress = 'IN_PROGRESS',
-  Pending = 'PENDING'
-}
+export type ScheduledOperationStatus =
+  | 'CANCELED'
+  | 'COMPLETED'
+  | 'FAILED'
+  | 'IN_PROGRESS'
+  | 'PENDING';
 
 export type ScheduledOperationUpdateManyInlineInput = {
   /** Connect multiple existing ScheduledOperation documents */
@@ -10006,38 +9989,36 @@ export type ScheduledReleaseManyWhereInput = {
   updatedBy?: InputMaybe<UserWhereInput>;
 };
 
-export enum ScheduledReleaseOrderByInput {
-  CreatedAtAsc = 'createdAt_ASC',
-  CreatedAtDesc = 'createdAt_DESC',
-  DescriptionAsc = 'description_ASC',
-  DescriptionDesc = 'description_DESC',
-  ErrorMessageAsc = 'errorMessage_ASC',
-  ErrorMessageDesc = 'errorMessage_DESC',
-  IdAsc = 'id_ASC',
-  IdDesc = 'id_DESC',
-  IsActiveAsc = 'isActive_ASC',
-  IsActiveDesc = 'isActive_DESC',
-  IsImplicitAsc = 'isImplicit_ASC',
-  IsImplicitDesc = 'isImplicit_DESC',
-  PublishedAtAsc = 'publishedAt_ASC',
-  PublishedAtDesc = 'publishedAt_DESC',
-  ReleaseAtAsc = 'releaseAt_ASC',
-  ReleaseAtDesc = 'releaseAt_DESC',
-  StatusAsc = 'status_ASC',
-  StatusDesc = 'status_DESC',
-  TitleAsc = 'title_ASC',
-  TitleDesc = 'title_DESC',
-  UpdatedAtAsc = 'updatedAt_ASC',
-  UpdatedAtDesc = 'updatedAt_DESC'
-}
+export type ScheduledReleaseOrderByInput =
+  | 'createdAt_ASC'
+  | 'createdAt_DESC'
+  | 'description_ASC'
+  | 'description_DESC'
+  | 'errorMessage_ASC'
+  | 'errorMessage_DESC'
+  | 'id_ASC'
+  | 'id_DESC'
+  | 'isActive_ASC'
+  | 'isActive_DESC'
+  | 'isImplicit_ASC'
+  | 'isImplicit_DESC'
+  | 'publishedAt_ASC'
+  | 'publishedAt_DESC'
+  | 'releaseAt_ASC'
+  | 'releaseAt_DESC'
+  | 'status_ASC'
+  | 'status_DESC'
+  | 'title_ASC'
+  | 'title_DESC'
+  | 'updatedAt_ASC'
+  | 'updatedAt_DESC';
 
 /** System Scheduled Release Status */
-export enum ScheduledReleaseStatus {
-  Completed = 'COMPLETED',
-  Failed = 'FAILED',
-  InProgress = 'IN_PROGRESS',
-  Pending = 'PENDING'
-}
+export type ScheduledReleaseStatus =
+  | 'COMPLETED'
+  | 'FAILED'
+  | 'IN_PROGRESS'
+  | 'PENDING';
 
 export type ScheduledReleaseUpdateInput = {
   description?: InputMaybe<Scalars['String']['input']>;
@@ -10288,18 +10269,16 @@ export type ScheduledReleaseWhereUniqueInput = {
 };
 
 /** Stage system enumeration */
-export enum Stage {
+export type Stage =
   /** The Draft is the default stage for all your content. */
-  Draft = 'DRAFT',
+  | 'DRAFT'
   /** The Published stage is where you can publish your content to. */
-  Published = 'PUBLISHED'
-}
+  | 'PUBLISHED';
 
-export enum SystemDateTimeFieldVariation {
-  Base = 'BASE',
-  Combined = 'COMBINED',
-  Localization = 'LOCALIZATION'
-}
+export type SystemDateTimeFieldVariation =
+  | 'BASE'
+  | 'COMBINED'
+  | 'LOCALIZATION';
 
 export type UnpublishLocaleInput = {
   /** Locales to unpublish */
@@ -10378,12 +10357,11 @@ export type UserEdge = {
 };
 
 /** System User Kind */
-export enum UserKind {
-  Member = 'MEMBER',
-  Pat = 'PAT',
-  Public = 'PUBLIC',
-  Webhook = 'WEBHOOK'
-}
+export type UserKind =
+  | 'MEMBER'
+  | 'PAT'
+  | 'PUBLIC'
+  | 'WEBHOOK';
 
 /** Identifies documents */
 export type UserManyWhereInput = {
@@ -10512,24 +10490,23 @@ export type UserManyWhereInput = {
   updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
 };
 
-export enum UserOrderByInput {
-  CreatedAtAsc = 'createdAt_ASC',
-  CreatedAtDesc = 'createdAt_DESC',
-  IdAsc = 'id_ASC',
-  IdDesc = 'id_DESC',
-  IsActiveAsc = 'isActive_ASC',
-  IsActiveDesc = 'isActive_DESC',
-  KindAsc = 'kind_ASC',
-  KindDesc = 'kind_DESC',
-  NameAsc = 'name_ASC',
-  NameDesc = 'name_DESC',
-  PictureAsc = 'picture_ASC',
-  PictureDesc = 'picture_DESC',
-  PublishedAtAsc = 'publishedAt_ASC',
-  PublishedAtDesc = 'publishedAt_DESC',
-  UpdatedAtAsc = 'updatedAt_ASC',
-  UpdatedAtDesc = 'updatedAt_DESC'
-}
+export type UserOrderByInput =
+  | 'createdAt_ASC'
+  | 'createdAt_DESC'
+  | 'id_ASC'
+  | 'id_DESC'
+  | 'isActive_ASC'
+  | 'isActive_DESC'
+  | 'kind_ASC'
+  | 'kind_DESC'
+  | 'name_ASC'
+  | 'name_DESC'
+  | 'picture_ASC'
+  | 'picture_DESC'
+  | 'publishedAt_ASC'
+  | 'publishedAt_DESC'
+  | 'updatedAt_ASC'
+  | 'updatedAt_DESC';
 
 export type UserUpdateManyInlineInput = {
   /** Connect multiple existing User documents */
@@ -10713,88 +10690,120 @@ export type VersionWhereInput = {
   stage: Stage;
 };
 
-export enum _FilterKind {
-  And = 'AND',
-  Not = 'NOT',
-  Or = 'OR',
-  Contains = 'contains',
-  ContainsAll = 'contains_all',
-  ContainsNone = 'contains_none',
-  ContainsSome = 'contains_some',
-  EndsWith = 'ends_with',
-  Eq = 'eq',
-  EqNot = 'eq_not',
-  Gt = 'gt',
-  Gte = 'gte',
-  In = 'in',
-  JsonPathExists = 'json_path_exists',
-  JsonValueRecursive = 'json_value_recursive',
-  Lt = 'lt',
-  Lte = 'lte',
-  NotContains = 'not_contains',
-  NotEndsWith = 'not_ends_with',
-  NotIn = 'not_in',
-  NotStartsWith = 'not_starts_with',
-  RelationalEvery = 'relational_every',
-  RelationalNone = 'relational_none',
-  RelationalSingle = 'relational_single',
-  RelationalSome = 'relational_some',
-  Search = 'search',
-  StartsWith = 'starts_with',
-  UnionEmpty = 'union_empty',
-  UnionEvery = 'union_every',
-  UnionNone = 'union_none',
-  UnionSingle = 'union_single',
-  UnionSome = 'union_some'
+export type _FilterKind =
+  | 'AND'
+  | 'NOT'
+  | 'OR'
+  | 'contains'
+  | 'contains_all'
+  | 'contains_none'
+  | 'contains_some'
+  | 'ends_with'
+  | 'eq'
+  | 'eq_not'
+  | 'gt'
+  | 'gte'
+  | 'in'
+  | 'json_path_exists'
+  | 'json_value_recursive'
+  | 'lt'
+  | 'lte'
+  | 'not_contains'
+  | 'not_ends_with'
+  | 'not_in'
+  | 'not_starts_with'
+  | 'relational_every'
+  | 'relational_none'
+  | 'relational_single'
+  | 'relational_some'
+  | 'search'
+  | 'starts_with'
+  | 'union_empty'
+  | 'union_every'
+  | 'union_none'
+  | 'union_single'
+  | 'union_some';
+
+export type _MutationInputFieldKind =
+  | 'enum'
+  | 'relation'
+  | 'richText'
+  | 'richTextWithEmbeds'
+  | 'scalar'
+  | 'union'
+  | 'virtual';
+
+export type _MutationKind =
+  | 'create'
+  | 'delete'
+  | 'deleteMany'
+  | 'publish'
+  | 'publishMany'
+  | 'schedulePublish'
+  | 'scheduleUnpublish'
+  | 'unpublish'
+  | 'unpublishMany'
+  | 'update'
+  | 'updateMany'
+  | 'upsert';
+
+export type _OrderDirection =
+  | 'asc'
+  | 'desc';
+
+export type _RelationInputCardinality =
+  | 'many'
+  | 'one';
+
+export type _RelationInputKind =
+  | 'create'
+  | 'update';
+
+export type _RelationKind =
+  | 'regular'
+  | 'union';
+
+export type _SystemDateTimeFieldVariation =
+  | 'base'
+  | 'combined'
+  | 'localization';
+
+export type ProductsGetListQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type ProductsGetListQuery = { __typename?: 'Query', products: Array<{ __typename?: 'Product', id: string, name: string, slug: string, description: string, price: number, categories: Array<{ __typename?: 'Category', id: string, name: string }>, images: Array<{ __typename?: 'Asset', id: string, url: string }> }> };
+
+export class TypedDocumentString<TResult, TVariables>
+  extends String
+  implements DocumentTypeDecoration<TResult, TVariables>
+{
+  __apiType?: DocumentTypeDecoration<TResult, TVariables>['__apiType'];
+
+  constructor(private value: string, public __meta__?: Record<string, any>) {
+    super(value);
+  }
+
+  toString(): string & DocumentTypeDecoration<TResult, TVariables> {
+    return this.value;
+  }
 }
 
-export enum _MutationInputFieldKind {
-  Enum = 'enum',
-  Relation = 'relation',
-  RichText = 'richText',
-  RichTextWithEmbeds = 'richTextWithEmbeds',
-  Scalar = 'scalar',
-  Union = 'union',
-  Virtual = 'virtual'
+export const ProductsGetListDocument = new TypedDocumentString(`
+    query ProductsGetList {
+  products(first: 4) {
+    id
+    name
+    slug
+    categories {
+      id
+      name
+    }
+    description
+    images {
+      id
+      url
+    }
+    price
+  }
 }
-
-export enum _MutationKind {
-  Create = 'create',
-  Delete = 'delete',
-  DeleteMany = 'deleteMany',
-  Publish = 'publish',
-  PublishMany = 'publishMany',
-  SchedulePublish = 'schedulePublish',
-  ScheduleUnpublish = 'scheduleUnpublish',
-  Unpublish = 'unpublish',
-  UnpublishMany = 'unpublishMany',
-  Update = 'update',
-  UpdateMany = 'updateMany',
-  Upsert = 'upsert'
-}
-
-export enum _OrderDirection {
-  Asc = 'asc',
-  Desc = 'desc'
-}
-
-export enum _RelationInputCardinality {
-  Many = 'many',
-  One = 'one'
-}
-
-export enum _RelationInputKind {
-  Create = 'create',
-  Update = 'update'
-}
-
-export enum _RelationKind {
-  Regular = 'regular',
-  Union = 'union'
-}
-
-export enum _SystemDateTimeFieldVariation {
-  Base = 'base',
-  Combined = 'combined',
-  Localization = 'localization'
-}
+    `) as unknown as TypedDocumentString<ProductsGetListQuery, ProductsGetListQueryVariables>;

@@ -1,10 +1,10 @@
 import Link from "next/link";
-import { type ProductItemType } from "@/ui/types";
+import { type Product } from "@/types";
 import { ProductCoverImage } from "@/ui/atoms/productCoverImage";
 import { ProductDescription } from "@/ui/atoms/productDescription";
 
 interface ProductListItemProps {
-	product: ProductItemType;
+	product: Product;
 }
 
 export const ProductListItem = ({ product }: ProductListItemProps) => {
@@ -12,7 +12,7 @@ export const ProductListItem = ({ product }: ProductListItemProps) => {
 		<li key={product.id} className="w-48 xl:w-64">
 			<article>
 				<Link href={`/product/${product.id}`}>
-					<ProductCoverImage image={product.attributes.images.data[0]} />
+					<ProductCoverImage image={product.images[0]} />
 				</Link>
 				<ProductDescription product={product} />
 			</article>
