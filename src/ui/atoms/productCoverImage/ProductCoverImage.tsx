@@ -3,7 +3,6 @@ interface ProductCoverImageProps {
 	image: {
 		id: string;
 		url: string;
-		alt: string;
 	}
 }
 
@@ -14,7 +13,7 @@ export const ProductCoverImage = ({ image }: ProductCoverImageProps) => {
 				width={640}
 				height={640}
 				src={image.url}
-				alt={image.alt || "sample image"}
+				alt={"sample image"}
 				className="h-full object-cover object-center p-4 "
 			/>
 		</div>

@@ -8,7 +8,9 @@ interface ProductsListProps {
 }
 
 export async function ProductsList({  }: ProductsListProps) {
-	const { products } = await executeGraphql(ProductsGetListDocument);
+	const { products } = await executeGraphql(ProductsGetListDocument, {
+		first: 4,
+	});
 
 	return (
 		<ul data-testid="products-list" className="flex flex-wrap gap-8 mx-auto">
