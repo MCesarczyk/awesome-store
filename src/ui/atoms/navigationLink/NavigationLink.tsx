@@ -5,19 +5,19 @@ import { type Route } from "next";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-interface NavigationLinkProps {
-	href: Route;
+interface NavigationLinkProps <T extends string>{
+	href: Route<T>;
 	children: React.ReactNode;
 }
 
-export const NavigationLink = ({ href, children }: NavigationLinkProps) => {
+export const NavigationLink = <T extends string>({ href, children }: NavigationLinkProps<T>) => {
 	const pathname = usePathname();
 
 	return (
 		<Link
 			href={href}
 			className={clsx(
-				`text-2xl font-bold text-white hover:text-slate-500`,
+				`text-xl font-semibold text-white hover:text-slate-500`,
 				pathname === href && "border-b-2 border-b-white",
 			)}
 		>
