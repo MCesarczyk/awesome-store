@@ -65,16 +65,16 @@ export type OrderItem = {
 
 export type Product = {
   __typename?: 'Product';
-  categories: Array<Maybe<Category>>;
-  collections: Array<Maybe<Collection>>;
+  categories: Array<Category>;
+  collections: Array<Collection>;
   createdAt: Scalars['DateTime']['output'];
   description: Scalars['String']['output'];
   id: Scalars['ID']['output'];
-  images: Array<Maybe<Image>>;
+  images: Array<Image>;
   name: Scalars['String']['output'];
-  orderItems: Array<Maybe<OrderItem>>;
+  orderItems: Array<OrderItem>;
   price: Scalars['Int']['output'];
-  reviews: Array<Maybe<Review>>;
+  reviews: Array<Review>;
   slug: Scalars['String']['output'];
   updatedAt: Scalars['DateTime']['output'];
 };
@@ -145,13 +145,20 @@ export type Review = {
   updatedAt: Scalars['DateTime']['output'];
 };
 
+export type ProductGetDetailsQueryVariables = Exact<{
+  id: Scalars['ID']['input'];
+}>;
+
+
+export type ProductGetDetailsQuery = { __typename?: 'Query', product?: { __typename?: 'Product', id: string, name: string, slug: string, description: string, price: number, categories: Array<{ __typename?: 'Category', id: string, name: string }>, images: Array<{ __typename?: 'Image', id: string, url: string, alt: string }> } | null };
+
 export type ProductsGetListQueryVariables = Exact<{
   first?: InputMaybe<Scalars['Int']['input']>;
   skip?: InputMaybe<Scalars['Int']['input']>;
 }>;
 
 
-export type ProductsGetListQuery = { __typename?: 'Query', products?: Array<{ __typename?: 'Product', id: string, name: string, slug: string, description: string, price: number, categories: Array<{ __typename?: 'Category', id: string, name: string } | null>, images: Array<{ __typename?: 'Image', id: string, url: string, alt: string } | null> } | null> | null };
+export type ProductsGetListQuery = { __typename?: 'Query', products?: Array<{ __typename?: 'Product', id: string, name: string, slug: string, description: string, price: number, categories: Array<{ __typename?: 'Category', id: string, name: string }>, images: Array<{ __typename?: 'Image', id: string, url: string, alt: string }> } | null> | null };
 
 export class TypedDocumentString<TResult, TVariables>
   extends String
@@ -168,23 +175,43 @@ export class TypedDocumentString<TResult, TVariables>
   }
 }
 
-export const ProductsGetListDocument = new TypedDocumentString(`
-    query ProductsGetList($first: Int, $skip: Int) {
-  products(first: $first, skip: $skip) {
-    id
-    name
-    slug
-    categories {
+export const ProductGetDetailsDocument = new TypedDocumentString(`
+  query ProductGetDetails($id: ID!) { 
+    product(id: $id) {
       id
       name
+      slug
+      categories {
+        id
+        name
+      }
+      description
+      images {
+        id
+        url
+        alt
+      }
+      price
     }
-    description
-    images {
-      id
-      url
-      alt
-    }
-    price
   }
-}
-    `) as unknown as TypedDocumentString<ProductsGetListQuery, ProductsGetListQueryVariables>;
+`) as unknown as TypedDocumentString<ProductGetDetailsQuery, ProductGetDetailsQueryVariables>;
+export const ProductsGetListDocument = new TypedDocumentString(`
+  query ProductsGetList($first: Int, $skip: Int) {
+    products(first: $first, skip: $skip) {
+      id
+      name
+      slug
+      categories {
+        id
+        name
+      }
+      description
+      images {
+        id
+        url
+        alt
+      }
+      price
+    }
+  }
+`) as unknown as TypedDocumentString<ProductsGetListQuery, ProductsGetListQueryVariables>;

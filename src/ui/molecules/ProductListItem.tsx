@@ -9,7 +9,7 @@ interface ProductListItemProps {
 
 export const ProductListItem = ({ product }: ProductListItemProps) => {
 	return (
-		<li key={product.id} className="w-48 xl:w-64">
+		<li key={product.id} className="w-full">
 			<article>
 				<Link href={`/product/${product.id}`}>
 					<ProductCoverImage image={product.images[0]} />
