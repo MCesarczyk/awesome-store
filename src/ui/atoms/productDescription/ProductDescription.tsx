@@ -17,8 +17,8 @@ export const ProductDescription = ({
 }: ProductDescriptionProps) => {
 	if (variant === 'EXTENDED') {
 		return (
-			<div className="mt-2 text-lg flex flex-col gap-4 flex-grow justify-between text-white h-full">
-			<h3 className="block font-semibold">{product.name}</h3>
+		<div className="mt-2 text-lg flex flex-col gap-4 flex-grow justify-between text-white h-full">
+			<h3 className="block text-4xl mb-8 font-semibold">{product.name}</h3>
 			<p className="flex flex-col text-gray-400">
 				<span className="text-xs mr-2">Category:</span>
 				{product.categories && product.categories[0]?.name}
