@@ -1,3 +1,4 @@
+import { notFound } from "next/navigation";
 import { executeGraphql } from "@/api/executeGraphql";
 import { CategoriesGetListDocument } from "@/gql/graphql";
 import { NavigationLink } from "@/ui/atoms/navigationLink";
@@ -6,7 +7,7 @@ export default async function CategoriesList() {
 	const {categories} = await executeGraphql(CategoriesGetListDocument, {});
 
 	if (!categories) {
-		return null;
+		notFound();
 	}
 
 	return (

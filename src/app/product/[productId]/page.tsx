@@ -1,4 +1,5 @@
 // import { type Metadata } from "next";
+import { notFound } from "next/navigation";
 import { productsApi } from "@/api/poductsApi";
 
 import { executeGraphql } from "@/api/executeGraphql";
@@ -31,7 +32,7 @@ export default async function Product({ params: {productId} }: MetadataProps) {
 	});
 
 	if (!product) {
-		return null;
+		notFound();
 	}
 
 	return (
