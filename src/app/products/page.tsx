@@ -7,8 +7,7 @@ interface Props {
 	searchParams: { [key: string]: string | string[] | undefined };
 }
 
-export default async function ProductsPage(props: Props) {
-	const searchParams = props.searchParams;
+export default async function ProductsPage({searchParams}: Props) {
 	const page = searchParams.page ? Number(searchParams.page) : 1;
 
 	return (

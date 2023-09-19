@@ -10,10 +10,10 @@ export const Navbar = () => (
 				<NavigationLink href="/products">All</NavigationLink>
 			</li>
 			<li>
-				<NavigationLink href="/categories">Categories</NavigationLink>
+				<NavigationLink href="/collections">Collections</NavigationLink>
 			</li>
 			<li>
-				<NavigationLink href="/collections">Collections</NavigationLink>
+				<NavigationLink href="/categories">Categories</NavigationLink>
 			</li>
 		</ul>
 	</nav>
