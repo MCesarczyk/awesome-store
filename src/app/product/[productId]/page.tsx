@@ -1,4 +1,4 @@
-// import { type Metadata } from "next";
+import { type Metadata } from "next";
 import { notFound } from "next/navigation";
 import { productsApi } from "@/api/poductsApi";
 
@@ -18,13 +18,15 @@ interface MetadataProps {
 	params: { productId: string };
 }
 
-// export async function generateMetadata({ params }: MetadataProps): Promise<Metadata> {
-// 	const product = await productsApi.getProductById(params.productId);
+export async function generateMetadata({ params }: MetadataProps): Promise<Metadata> {
+	const { product } = await executeGraphql(ProductGetDetailsDocument, {
+		id: params.productId,
+	});
 
-// 	return {
-// 		title: product.title,
-// 	};
-// }
+	return {
+		title: product?.name || "",
+	};
+}
 
 export default async function Product({ params: {productId} }: MetadataProps) {
 	const { product } = await executeGraphql(ProductGetDetailsDocument, {
@@ -36,9 +38,12 @@ export default async function Product({ params: {productId} }: MetadataProps) {
 	}
 
 	return (
-		<section className="m-12 flex flex-col sm:flex-row gap-8 mb-8 mx-auto max-w-md p-2 sm:p-4 sm:max-w-2xl sm:py-2">
-			{product.images.map(image => <ProductCoverImage key={image.id} image={image} />)}
-			<ProductDescription variant="EXTENDED" product={product} />
+		<section className="px-2 sm:px-12 py-20">
+			<h1 className="text-3xl sm:text-4xl font-semibold">{product.name}</h1>
+			<p className="m-8 flex flex-col sm:flex-row gap-8 mb-8 mx-auto max-w-md p-2 sm:p-4 sm:max-w-2xl sm:py-2">
+				{product.images.map(image => <ProductCoverImage key={image.id} image={image} />)}
+				<ProductDescription variant="EXTENDED" product={product} />
+			</p>
 		</section>
 	);
 }

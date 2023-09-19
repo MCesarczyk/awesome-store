@@ -16,7 +16,7 @@ export default async function ProductsPage(props: Props) {
 			<h1 className="mx-2 mb-8 text-4xl font-semibold">Products list</h1>
 			<p className="border-r-12 mb-8 bg-gray-700 p-8 flex align-middle justify-center">
 				<Suspense>
-					<ProductsList page={page} perPage={8} variant="PRIMARY" />
+					<ProductsList testId="products-list" page={page} perPage={4} variant="PRIMARY" />
 				</Suspense>
 			</p>
 			<footer>
