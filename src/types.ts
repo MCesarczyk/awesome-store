@@ -13,11 +13,17 @@ export interface Category {
   name: string;
 }
 
+export interface Collection {
+  id: string;
+  name: string;
+}
+
 export interface Product {
   id: string;
   name: string;
   slug: string;
   categories: Category[];
+  collections: Collection[];
   description: string;
   images: Image[];
   price: number;

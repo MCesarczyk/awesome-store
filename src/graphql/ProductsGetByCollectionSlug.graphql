@@ -1,5 +1,5 @@
-query ProductsGetByCategorySlug($first: Int, $skip: Int, $categorySlug: String!) {
-  products(first: $first, skip: $skip, category: $categorySlug) {
+query ProductsGetByCollectionSlug($first: Int, $skip: Int, $collectionSlug: String!) {
+  products(first: $first, skip: $skip, collection: $collectionSlug) {
     id
     name
     slug
