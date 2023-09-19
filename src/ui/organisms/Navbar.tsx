@@ -4,7 +4,7 @@ export const Navbar = () => (
 	<nav className="w-full bg-blue-700 px-6 py-2 bg-opacity-50 fixed text-white">
 		<ul className="flex gap-4">
 			<li>
-				<NavigationLink href="/">Home</NavigationLink>
+				<NavigationLink href="/" exact>Home</NavigationLink>
 			</li>
 			<li>
 				<NavigationLink href="/products">All</NavigationLink>

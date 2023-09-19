@@ -8,17 +8,20 @@ import { usePathname } from "next/navigation";
 interface NavigationLinkProps <T extends string>{
 	href: Route<T>;
 	children: React.ReactNode;
+	exact?: boolean;
 }
 
-export const NavigationLink = <T extends string>({ href, children }: NavigationLinkProps<T>) => {
+export const NavigationLink = <T extends string>({ href, children, exact }: NavigationLinkProps<T>) => {
 	const pathname = usePathname();
+
+	const isActive = exact ? pathname === href : pathname.includes(href);
 
 	return (
 		<Link
 			href={href}
 			className={clsx(
 				`text-xl font-semibold text-white hover:text-slate-500`,
-				pathname === href && "border-b-2 border-b-white",
+				isActive && "border-b-2 border-b-white",
 			)}
 		>
 			{children}
