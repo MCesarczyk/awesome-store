@@ -33,7 +33,7 @@ export default meta;
 const options = createNavigationOptions();
 
 const Template: StoryFn<ComponentProps<typeof Navbar>> = (args) => (
-  <div className="w-96 h-48 p-12 bg-slate-600">
+  <div className="w-96 h-64 p-12 bg-green-300">
     <Navbar {...args} />
   </div>
 );
