@@ -26,7 +26,9 @@ export default meta;
 const options = createNavigationOptions();
 
 const Template: StoryFn<ComponentProps<typeof Dropdown>> = (args) => (
-  <Dropdown {...args} />
+  <div className="w-96 h-48 p-12 bg-slate-600">
+    <Dropdown {...args} />
+  </div>
 );
 
 export const Default = Template.bind({});

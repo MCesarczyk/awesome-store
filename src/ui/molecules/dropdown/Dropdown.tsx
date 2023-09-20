@@ -18,13 +18,13 @@ export const Dropdown = <T extends string>({options,selected}:DropdownProps<T>) 
   return (
     <>
     <div onMouseEnter={open} onMouseLeave={close}>
-    <NavigationLink {...selected} />
+      <NavigationLink {...selected} />
+      <ul className={`${isOpen ? "flex flex-col" : "hidden"}`}>
+        {filteredOptions.map(option => <li key={option.href}>
+          <NavigationLink {...option} />
+        </li>)}
+      </ul>
     </div>
-    <ul className={`${isOpen ? "flex flex-col" : "hidden"}`}>
-      {filteredOptions.map(option => <li key={option.href}>
-        <NavigationLink {...option} />
-      </li>)}
-    </ul>
     </>
   );
 };
