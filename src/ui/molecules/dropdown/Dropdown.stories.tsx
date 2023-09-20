@@ -34,5 +34,4 @@ const Template: StoryFn<ComponentProps<typeof Dropdown>> = (args) => (
 export const Default = Template.bind({});
 Default.args = {
   options,
-  selected: options[0],
 };

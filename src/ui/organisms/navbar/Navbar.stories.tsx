@@ -40,5 +40,5 @@ const Template: StoryFn<ComponentProps<typeof Navbar>> = (args) => (
 
 export const Default = Template.bind({});
 Default.args = {
-  children: <Dropdown options={options} selected={options[0]} />,
+  children: <Dropdown options={options} />,
 };

@@ -6,8 +6,8 @@ interface NavbarProps {
 }
 
 export const Navbar = ({ children }:NavbarProps) => (
-	<nav className="w-full bg-blue-700 px-6 bg-opacity-50 fixed text-white">
-		<ul className="flex gap-1">
+	<nav className="w-full bg-blue-700 px-6 bg-opacity-50 fixed text-white align-baseline height">
+		<ul className="flex gap-1 align-middle">
 			<li>
 				<NavigationLink href="/" exact>Home</NavigationLink>
 			</li>
