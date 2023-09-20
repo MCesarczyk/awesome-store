@@ -8,11 +8,13 @@ query ProductsGetByCollectionSlug($first: Int, $skip: Int, $collectionSlug: Stri
       id
       name
       slug
+      description
     }
     collections {
       id
       name
       slug
+      description
     }
     images {
       id

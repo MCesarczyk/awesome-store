@@ -8,11 +8,13 @@ query ProductsGetByCategorySlug($first: Int, $skip: Int, $categorySlug: String!)
       id
       name
       slug
+      description
     }
     collections {
       id
       name
       slug
+      description
     }
     images {
       id
