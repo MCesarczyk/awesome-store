@@ -14,12 +14,6 @@ export const Navbar = ({ children }:NavbarProps) => (
 			<li>
 				<NavigationLink href="/products">All</NavigationLink>
 			</li>
-			<li>
-				<NavigationLink href="/collections">Collections</NavigationLink>
-			</li>
-			<li>
-				<NavigationLink href="/categories">Categories</NavigationLink>
-			</li>
 			{children}
 		</ul>
 	</nav>

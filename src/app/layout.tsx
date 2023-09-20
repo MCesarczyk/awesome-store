@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { APP_TITLE } from "@/constants";
-import { Navbar } from "@/ui/organisms/Navbar";
+import { Navbar } from "@/ui/organisms/navbar";
 import { Footer } from "@/ui/organisms/Footer";
+import { Dropdown } from "@/ui/molecules/dropdown";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,7 +18,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 		<html lang="en">
 			<body className={`${inter.className} h-screen flex flex-col`}>
 				<header>
-					<Navbar />
+					<Navbar>
+						<Dropdown	
+							options={[
+								{ href: "/collections", children: "Collections" },
+								{ href: "/categories", children: "Categories" },
+							]} 
+							selected={{ href: "/", children: "Home" }} 
+						/>
+					</Navbar>
 				</header>
 				<main>{children}</main>
 				<Footer />

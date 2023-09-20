@@ -19,7 +19,13 @@ const meta = {
     controls: { hideNoControlsWarning: true, sort: 'requiredFirst' },
   },
   tags: ['autodocs'],
-  argTypes: {  },
+  argTypes: { 
+    children: {
+      table: {
+        disable: true,
+      }
+    }
+   },
 } satisfies Meta<typeof Navbar>;
 
 export default meta;

@@ -1,3 +1,5 @@
+"use client"
+
 import { useState } from "react";
 import { NavigationLink } from "@/ui/atoms/navigationLink";
 import { type NavigationLinkProps } from "@/types";
@@ -19,7 +21,7 @@ export const Dropdown = <T extends string>({options,selected}:DropdownProps<T>) 
     <>
     <div onMouseEnter={open} onMouseLeave={close}>
       <NavigationLink {...selected} />
-      <ul className={`${isOpen ? "flex flex-col" : "hidden"}`}>
+      <ul className={`${isOpen ? "absolute flex flex-col" : "hidden"}`}>
         {filteredOptions.map(option => <li key={option.href}>
           <NavigationLink {...option} />
         </li>)}
