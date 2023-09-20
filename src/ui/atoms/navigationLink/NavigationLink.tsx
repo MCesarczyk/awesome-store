@@ -1,15 +1,9 @@
 "use client";
 
 import clsx from "clsx";
-import { type Route } from "next";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
-interface NavigationLinkProps <T extends string>{
-	href: Route<T>;
-	children: React.ReactNode;
-	exact?: boolean;
-}
+import { type NavigationLinkProps } from "@/types";
 
 export const NavigationLink = <T extends string>({ href, children, exact }: NavigationLinkProps<T>) => {
 	const pathname = usePathname();

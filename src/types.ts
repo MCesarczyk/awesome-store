@@ -1,3 +1,5 @@
+import { type Route } from "next";
+
 export type GraphqlResponse<T> =
   | { data?: undefined; errors: { message: string }[] }
   | { data: T; errors?: undefined };
@@ -27,4 +29,10 @@ export interface Product {
   description: string;
   images: Image[];
   price: number;
+}
+
+export interface NavigationLinkProps<T extends string> {
+  href: Route<T>;
+  children: React.ReactNode;
+  exact?: boolean;
 }

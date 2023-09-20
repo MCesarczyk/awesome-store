@@ -1,7 +1,7 @@
 import { executeGraphql } from "@/api/executeGraphql";
 import { ProductsGetListDocument } from "@/gql/graphql";
 import { isProductValid } from "@/typeguards";
-import { ProductListItem } from "@/ui/molecules";
+import { ProductListItem } from "@/ui/molecules/productListItem";
 
 interface ProductsListProps {
 	page: number;

@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { executeGraphql } from "@/api/executeGraphql";
 import { ProductsGetByCategorySlugDocument } from "@/gql/graphql";
-import { ProductListItem } from "@/ui/molecules";
+import { ProductListItem } from "@/ui/molecules/productListItem";
 import { Pagination } from "@/ui/organisms/Pagination";
 
 interface CategoryPageProps {

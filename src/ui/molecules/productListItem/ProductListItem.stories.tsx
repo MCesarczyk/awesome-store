@@ -24,13 +24,12 @@ export const Default = Template.bind({});
 Default.args = {
   product: {
     id: "1",
-      attributes: {
-        name: 'Basic Tee',
-        slug: 'basic-tee',
-        description: '',
-        categories: { data: [{id: '1',attributes: { name: 'Accessories', slug: 'accessories', description: '' } }] },
-        images: { data: [{ id:'1', attributes: { url: 'https://picsum.photos/640/640', alternativeText: 'Product'}}]},
+      name: 'Basic Tee',
+      slug: 'basic-tee',
+      description: '',
+      categories: [{id: '1', name: 'Accessories' }],
+      collections: [{id: '1', name: 'Summer Collection' }],
+      images: [{ id:'1', url: 'https://picsum.photos/640/640', alt: 'Product'}],
       price: 29,
-    }
   },
 };

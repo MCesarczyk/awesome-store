@@ -1,11 +1,12 @@
 import { type ComponentProps } from 'react';
 import type { Meta, StoryFn } from '@storybook/react';
 
-import { NavigationLink } from './NavigationLink';
+import { Dropdown } from './Dropdown';
+import { createNavigationOptions } from '@/ui/molecules/dropdown/fixtures';
 
 const meta = {
-  title: 'Atoms/NavigationLink',
-  component: NavigationLink,
+  title: 'Molecules/Dropdown',
+  component: Dropdown,
   parameters: {
     nextjs: {
       appDirectory: true,
@@ -18,16 +19,18 @@ const meta = {
   },
   tags: ['autodocs'],
   argTypes: {  },
-} satisfies Meta<typeof NavigationLink>;
+} satisfies Meta<typeof Dropdown>;
 
 export default meta;
 
-const Template: StoryFn<ComponentProps<typeof NavigationLink>> = (args) => (
-  <NavigationLink {...args} />
+const options = createNavigationOptions();
+
+const Template: StoryFn<ComponentProps<typeof Dropdown>> = (args) => (
+  <Dropdown {...args} />
 );
 
 export const Default = Template.bind({});
 Default.args = {
-  href: '/products',
-  children: 'Products',
+  options,
+  selected: options[0],
 };
