@@ -12,8 +12,11 @@ interface CategoryPageProps {
 export default async function CollectionPage({ params: { collectionSlug }, searchParams }:CategoryPageProps) {
 	const page = searchParams.page ? Number(searchParams.page) : 1;
 
+  const {products: allProducts} = await executeGraphql(ProductsGetByCollectionSlugDocument, {collectionSlug});
+
   const {products} = await executeGraphql(ProductsGetByCollectionSlugDocument, {
     first: 4,
+    skip: (page - 1) * 4,
     collectionSlug,
   });
 
@@ -32,7 +35,7 @@ export default async function CollectionPage({ params: { collectionSlug }, searc
         </ul>
       </section>
       <footer>
-				<Pagination page={page} />
+				{allProducts && <Pagination itemsNumber={allProducts.length} path={`/collections/${collectionSlug}`} page={page} />}
 			</footer>
     </>
   )

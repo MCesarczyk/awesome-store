@@ -12,8 +12,11 @@ interface CategoryPageProps {
 export default async function CategoryPage({ params: { categorySlug }, searchParams }:CategoryPageProps) {
 	const page = searchParams.page ? Number(searchParams.page) : 1;
 
+  const { products: allProducts} = await executeGraphql(ProductsGetByCategorySlugDocument, {categorySlug});
+
   const {products} = await executeGraphql(ProductsGetByCategorySlugDocument, {
     first: 4,
+    skip: (page - 1) * 4,
     categorySlug,
   });
 
@@ -32,7 +35,7 @@ export default async function CategoryPage({ params: { categorySlug }, searchPar
       </ul>
     </section>
     <footer>
-      <Pagination page={page} />
+      {allProducts && <Pagination itemsNumber={allProducts?.length} path={`/categories/${categorySlug}`} page={page} />}
     </footer>
     </>
   )

@@ -1,6 +1,8 @@
 import { Suspense } from "react";
 import { Pagination } from "@/ui/organisms/Pagination";
 import { ProductsList } from "@/ui/organisms/ProductList";
+import { executeGraphql } from "@/api/executeGraphql";
+import { ProductsGetListDocument } from "@/gql/graphql";
 
 interface Props {
 	params: {};
@@ -9,6 +11,8 @@ interface Props {
 
 export default async function ProductsPage({searchParams}: Props) {
 	const page = searchParams.page ? Number(searchParams.page) : 1;
+
+	const { products } = await executeGraphql(ProductsGetListDocument, {});
 
 	return (
 		<section>
@@ -19,7 +23,7 @@ export default async function ProductsPage({searchParams}: Props) {
 				</Suspense>
 			</p>
 			<footer>
-				<Pagination page={page} />
+				{products && <Pagination itemsNumber={products?.length} path="/products" page={page} />}
 			</footer>
 		</section>
 	);

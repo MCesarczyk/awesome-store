@@ -1,16 +1,15 @@
 import Link from "next/link";
-import { executeGraphql } from "@/api/executeGraphql";
-import { ProductsGetListDocument } from "@/gql/graphql";
+import { type Route } from "next";
 
 interface PaginationProps {
+	path: string;
+	itemsNumber: number;
 	page?: number;
 	perPage?: number;
 }
 
-export const Pagination = async ({ page = 1, perPage = 10 }: PaginationProps) => {
-	const { products } = await executeGraphql(ProductsGetListDocument, {});
-
-	const pages = products ? Math.ceil(products.length / perPage) : 1;
+export const Pagination = async ({ path, itemsNumber, page = 1, perPage = 10 }: PaginationProps) => {
+	const pages = itemsNumber ? Math.ceil(itemsNumber / perPage) : 1;
 
 	if (!pages) {
 		return null;
@@ -25,7 +24,7 @@ export const Pagination = async ({ page = 1, perPage = 10 }: PaginationProps) =>
 			{[...Array(pages).keys()].map((page, index) => (
 				<Link
 					key={page}
-					href={`/products?page=${index + 1}`}
+					href={`${path as Route}?page=${index + 1}`}
 					className={`text-2xl font-bold text-pink-600 hover:text-pink-300`}
 				>
 					{index + 1}
