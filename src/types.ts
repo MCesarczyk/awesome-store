@@ -13,11 +13,15 @@ export interface Image {
 export interface Category {
   id: string;
   name: string;
+  slug: string;
+  description?: string;
 }
 
 export interface Collection {
   id: string;
   name: string;
+  slug: string;
+  description?: string;
 }
 
 export interface Product {

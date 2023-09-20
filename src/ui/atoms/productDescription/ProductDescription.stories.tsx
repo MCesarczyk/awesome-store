@@ -24,10 +24,9 @@ export const Default = Template.bind({});
 Default.args = {
   product: {
     id: "1",
-    attributes: {
-      name: 'Basic Tee',
-    categories: {data:[{id:'1', attributes:{name:'Accessories',slug:'accessories',description:''}}]},
+    name: 'Basic Tee',
+    description: 'A basic t-shirt for everyone.',
+    categories: [{id:'1', name:'Accessories',slug:'accessories',description:''}],
     price: 29,
-    }
   },
 };

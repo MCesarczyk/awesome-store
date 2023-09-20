@@ -3,6 +3,7 @@ interface ProductCoverImageProps {
 	image: {
 		id: string;
 		url: string;
+		alt: string;
 	}
 }
 
