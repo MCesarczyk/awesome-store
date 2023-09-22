@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
+import { Suspense } from "react";
 import { APP_TITLE } from "@/constants";
 import { Navbar } from "@/ui/organisms/navbar";
 import { Footer } from "@/ui/organisms/Footer";
@@ -8,6 +8,8 @@ import { Dropdown } from "@/ui/molecules/dropdown";
 import { executeGraphql } from "@/api/executeGraphql";
 import { CategoriesGetListDocument, CollectionsGetListDocument } from "@/gql/graphql";
 import { type Collection, type Category } from "@/types";
+import { Search } from "@/ui/organisms/search";
+import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -52,6 +54,9 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 								}))}
 							/>
 						</li>
+						<Suspense>
+							<Search />
+						</Suspense>
 					</Navbar>
 				</header>
 				<main>{children}</main>
