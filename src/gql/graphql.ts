@@ -209,6 +209,8 @@ export type ProductsGetByCollectionSlugQuery = { __typename?: 'Query', products?
 export type ProductsGetListQueryVariables = Exact<{
   first?: InputMaybe<Scalars['Int']['input']>;
   skip?: InputMaybe<Scalars['Int']['input']>;
+  collection?: InputMaybe<Scalars['String']['input']>;
+  category?: InputMaybe<Scalars['String']['input']>;
 }>;
 
 
@@ -334,8 +336,13 @@ export const ProductsGetByCollectionSlugDocument = new TypedDocumentString(`
 }
     `) as unknown as TypedDocumentString<ProductsGetByCollectionSlugQuery, ProductsGetByCollectionSlugQueryVariables>;
 export const ProductsGetListDocument = new TypedDocumentString(`
-    query ProductsGetList($first: Int, $skip: Int) {
-  products(first: $first, skip: $skip) {
+    query ProductsGetList($first: Int, $skip: Int, $collection: String, $category: String) {
+  products(
+    first: $first
+    skip: $skip
+    collection: $collection
+    category: $category
+  ) {
     id
     name
     slug

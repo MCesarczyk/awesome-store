@@ -26,17 +26,17 @@ export default async function CategoryPage({ params: { categorySlug }, searchPar
 
   return (
     <>
-    <section className="mx-auto p-12">
-      <h1 className="text-4xl font-semibold my-8">Category {categorySlug}</h1>
-      <ul data-testid="products-list" className="grid sm:grid-cols-2 gap-8 lg:grid-cols-4">
-        {products.map((product) => (
-          product ? <ProductListItem key={product.id} product={product} /> : null
-        ))}
-      </ul>
-    </section>
-    <footer>
-      {allProducts && <Pagination itemsNumber={allProducts?.length} path={`/categories/${categorySlug}`} page={page} />}
-    </footer>
+      <section className="mx-auto p-12">
+        <h1 className="text-4xl font-semibold my-8">Category {categorySlug}</h1>
+        <ul data-testid="products-list" className="grid sm:grid-cols-2 gap-8 lg:grid-cols-4">
+          {products.map((product) => (
+            product ? <ProductListItem key={product.id} product={product} /> : null
+          ))}
+        </ul>
+      </section>
+      <footer>
+        {allProducts && <Pagination itemsNumber={allProducts?.length} path={`/categories/${categorySlug}`} page={page} />}
+      </footer>
     </>
   )
 }

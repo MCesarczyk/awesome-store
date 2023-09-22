@@ -8,12 +8,16 @@ interface ProductsListProps {
 	perPage?: number;
 	variant?: "PRIMARY" | "SECONDARY";
 	testId?: string;
+	collection?: string;
+	category?: string;
 }
 
-export async function ProductsList({ page, perPage = 10, variant, testId }: ProductsListProps) {
+export async function ProductsList({ page, perPage = 10, variant, testId, collection, category }: ProductsListProps) {
 	const { products } = await executeGraphql(ProductsGetListDocument, {
 		first: perPage,
 		skip: (page - 1) * perPage,
+		collection,
+		category,
 	});
 
 	if (!products) {
