@@ -7,7 +7,7 @@ export default async function ProductsLayout({ children }: { children: ReactNode
 			<aside className="hidden sm:block w-64 p-4 pr-0">
 				<h2 className="mb-4 text-xl font-bold">Popular products</h2>
 				<Suspense>
-					<ProductsList page={1} perPage={6} />
+					<ProductsList testId="related-products" page={1} perPage={4} />
 				</Suspense>
 			</aside>
 			<main className="col-span-9 p-4">{children}</main>

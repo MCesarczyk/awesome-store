@@ -5,7 +5,7 @@ export default function Home() {
 	return (
 		<section className="mx-auto p-12">
 			<h1 className="text-4xl font-semibold my-8">{APP_TITLE}</h1>
-			<ProductsList page={1} perPage={4} variant="PRIMARY" />
+			<ProductsList testId="products-list" page={1} perPage={4} variant="PRIMARY" />
 		</section>
 	);
 }

@@ -14,6 +14,7 @@ export const NavigationLink = <T extends string>({ href, children, exact }: Navi
 		<div className="px-2 py-1 bg-blue-700 opacity-90 hover:bg-blue-600 text-white hover:text-slate-500">
 			<Link
 				href={href}
+				aria-current={isActive ? "page" : undefined}
 				className={clsx(
 					"text-xl font-semibold",
 					isActive && "border-b-2 border-b-white",

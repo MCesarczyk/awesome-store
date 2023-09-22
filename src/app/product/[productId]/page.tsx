@@ -25,6 +25,7 @@ export async function generateMetadata({ params }: MetadataProps): Promise<Metad
 
 	return {
 		title: product?.name || "",
+		description: product?.description || "",
 	};
 }
 

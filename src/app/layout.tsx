@@ -31,17 +31,6 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 				<header>
 					<Navbar>
 						<li className="flex items-center">
-							Category:
-						</li>
-						<li>
-							<Dropdown
-								options={categories.map((category) => ({
-									href: `/categories/${(category as Category).slug}`,
-									children: (category as Category).name,
-								}))}
-							/>
-						</li>
-						<li className="flex items-center">
 							Collection:
 						</li>
 						<li>
@@ -49,6 +38,17 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 								options={collections.map((collection) => ({
 									href: `/collections/${(collection as Collection).slug}`,
 									children: (collection as Collection).name,
+								}))}
+							/>
+						</li>
+						<li className="flex items-center">
+							Category:
+						</li>
+						<li>
+							<Dropdown
+								options={categories.map((category) => ({
+									href: `/categories/${(category as Category).slug}`,
+									children: (category as Category).name,
 								}))}
 							/>
 						</li>
