@@ -1,5 +1,5 @@
-query ProductsGetList($first: Int, $skip: Int, $collection: String, $category: String) {
-  products(first: $first, skip: $skip, collection: $collection, category: $category) {
+query ProductsGetList($first: Int, $skip: Int, $collection: String, $category: String, $name: String, $description: String) {
+  products(first: $first, skip: $skip, collection: $collection, category: $category, name: $name, description: $description) {
     id
     name
     slug

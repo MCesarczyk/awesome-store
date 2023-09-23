@@ -10,14 +10,16 @@ interface ProductsListProps {
 	testId?: string;
 	collection?: string;
 	category?: string;
+	name?: string;
 }
 
-export async function ProductsList({ page, perPage = 10, variant, testId, collection, category }: ProductsListProps) {
+export async function ProductsList({ page, perPage = 10, variant, testId, collection, category,name }: ProductsListProps) {
 	const { products } = await executeGraphql(ProductsGetListDocument, {
 		first: perPage,
 		skip: (page - 1) * perPage,
 		collection,
 		category,
+		name
 	});
 
 	if (!products) {

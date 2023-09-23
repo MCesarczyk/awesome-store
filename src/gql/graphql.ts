@@ -95,6 +95,12 @@ export type Product = {
   updatedAt: Scalars['DateTime']['output'];
 };
 
+export type ProductsInputFilter = {
+  description?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type Query = {
   __typename?: 'Query';
   categories: Array<Maybe<Category>>;
@@ -151,8 +157,11 @@ export type QueryProductArgs = {
 export type QueryProductsArgs = {
   category?: InputMaybe<Scalars['String']['input']>;
   collection?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
   first?: InputMaybe<Scalars['Int']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
   skip?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type Review = {
@@ -211,6 +220,8 @@ export type ProductsGetListQueryVariables = Exact<{
   skip?: InputMaybe<Scalars['Int']['input']>;
   collection?: InputMaybe<Scalars['String']['input']>;
   category?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
 }>;
 
 
@@ -336,12 +347,14 @@ export const ProductsGetByCollectionSlugDocument = new TypedDocumentString(`
 }
     `) as unknown as TypedDocumentString<ProductsGetByCollectionSlugQuery, ProductsGetByCollectionSlugQueryVariables>;
 export const ProductsGetListDocument = new TypedDocumentString(`
-    query ProductsGetList($first: Int, $skip: Int, $collection: String, $category: String) {
+    query ProductsGetList($first: Int, $skip: Int, $collection: String, $category: String, $name: String, $description: String) {
   products(
     first: $first
     skip: $skip
     collection: $collection
     category: $category
+    name: $name
+    description: $description
   ) {
     id
     name
