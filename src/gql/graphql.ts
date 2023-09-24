@@ -83,6 +83,7 @@ export type Product = {
   __typename?: 'Product';
   categories: Array<Category>;
   collections: Array<Collection>;
+  colors: Array<ProductColor>;
   createdAt: Scalars['DateTime']['output'];
   description: Scalars['String']['output'];
   id: Scalars['ID']['output'];
@@ -91,8 +92,29 @@ export type Product = {
   orderItems: Array<OrderItem>;
   price: Scalars['Int']['output'];
   reviews: Array<Review>;
+  sizes: Array<ProductSize>;
   slug: Scalars['String']['output'];
   updatedAt: Scalars['DateTime']['output'];
+};
+
+export type ProductColor = {
+  __typename?: 'ProductColor';
+  createdAt: Scalars['DateTime']['output'];
+  id: Scalars['ID']['output'];
+  name: Scalars['String']['output'];
+  products: Array<Product>;
+  updatedAt: Scalars['DateTime']['output'];
+  value: Scalars['String']['output'];
+};
+
+export type ProductSize = {
+  __typename?: 'ProductSize';
+  createdAt: Scalars['DateTime']['output'];
+  id: Scalars['ID']['output'];
+  name: Scalars['String']['output'];
+  products: Array<Product>;
+  updatedAt: Scalars['DateTime']['output'];
+  value: Scalars['Int']['output'];
 };
 
 export type ProductsInputFilter = {
@@ -195,7 +217,7 @@ export type ProductGetDetailsQueryVariables = Exact<{
 }>;
 
 
-export type ProductGetDetailsQuery = { __typename?: 'Query', product?: { __typename?: 'Product', id: string, name: string, slug: string, description: string, price: number, categories: Array<{ __typename?: 'Category', id: string, name: string, slug: string, description: string }>, collections: Array<{ __typename?: 'Collection', id: string, name: string, slug: string, description: string }>, images: Array<{ __typename?: 'Image', id: string, url: string, alt: string }> } | null };
+export type ProductGetDetailsQuery = { __typename?: 'Query', product?: { __typename?: 'Product', id: string, name: string, slug: string, description: string, price: number, categories: Array<{ __typename?: 'Category', id: string, name: string, slug: string, description: string }>, collections: Array<{ __typename?: 'Collection', id: string, name: string, slug: string, description: string }>, sizes: Array<{ __typename?: 'ProductSize', id: string, name: string, value: number }>, colors: Array<{ __typename?: 'ProductColor', id: string, name: string, value: string }>, images: Array<{ __typename?: 'Image', id: string, url: string, alt: string }> } | null };
 
 export type ProductsGetByCategorySlugQueryVariables = Exact<{
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -281,6 +303,16 @@ export const ProductGetDetailsDocument = new TypedDocumentString(`
       description
     }
     description
+    sizes {
+      id
+      name
+      value
+    }
+    colors {
+      id
+      name
+      value
+    }
     images {
       id
       url

@@ -1,4 +1,6 @@
-import { type Category } from "@/types";
+import { type Category, type ProductSize, type ProductColor } from "@/types";
+import { ColorSelector } from "@/ui/organisms/colorSelector";
+import { SizeSelector } from "@/ui/organisms/sizeSelector";
 
 interface ProductDescriptionProps {
 	product: {
@@ -7,6 +9,8 @@ interface ProductDescriptionProps {
 		categories: Category[] | null | undefined;
 		price: number;
 		description: string;
+		colors: ProductColor[];
+		sizes: ProductSize[];
 	};
 	variant?: 'DEFAULT' | 'EXTENDED';
 }
@@ -22,6 +26,8 @@ export const ProductDescription = ({
 				<span className="text-xs mr-2">Category:</span>
 				{product.categories && product.categories[0]?.name}
 			</p>
+			<SizeSelector sizes={product.sizes}  />
+			<ColorSelector colors={product.colors} />
 			<p className="flex flex-col text-gray-400">
 				<span className="text-xs mr-2">Price:</span>${(product.price/100).toFixed(2)}
 			</p>

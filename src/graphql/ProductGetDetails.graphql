@@ -16,6 +16,16 @@ query ProductGetDetails($id: ID!) {
       description
     }
     description
+    sizes {
+      id
+      name
+      value
+    }
+    colors {
+      id
+      name
+      value
+    }
     images {
       id
       url

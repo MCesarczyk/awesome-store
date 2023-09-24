@@ -24,6 +24,18 @@ export interface Collection {
   description?: string;
 }
 
+export interface ProductColor {
+  id: string;
+  name: string;
+  value: string;
+}
+
+export interface ProductSize {
+  id: string;
+  name: string;
+  value: number;
+}
+
 export interface Product {
   id: string;
   name: string;
