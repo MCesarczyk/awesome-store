@@ -9,7 +9,7 @@ interface ProductCoverImageProps {
 
 export const ProductCoverImage = ({ image }: ProductCoverImageProps) => {
 	return (
-		<div className="aspect-square overflow-hidden rounded-md bg-slate-50 hover:bg-slate-100 text-black">
+		<div className="aspect-square self-start overflow-hidden rounded-md bg-slate-50 hover:bg-slate-100 text-black">
 			<img
 				width={640}
 				height={640}

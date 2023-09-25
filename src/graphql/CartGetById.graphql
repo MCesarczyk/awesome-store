@@ -1,0 +1,5 @@
+query CartGetById($id: ID!, $status: String!) {
+  order(id: $id, status: $status) {
+    ...Cart
+  }
+}

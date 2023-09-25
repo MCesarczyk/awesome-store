@@ -1,10 +1,11 @@
 import { type Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
+import { cookies } from "next/headers";
 import { productsApi } from "@/api/poductsApi";
 
 import { executeGraphql } from "@/api/executeGraphql";
-import { ProductGetDetailsDocument } from "@/gql/graphql";
+import { CartCreateDocument, type CartFragment, CartGetByIdDocument, ProductGetDetailsDocument } from "@/gql/graphql";
 import { ProductCoverImage } from "@/ui/atoms/productCoverImage";
 import { ProductDescription } from "@/ui/atoms/productDescription";
 import { ProductsList } from "@/ui/organisms/ProductList";
@@ -40,6 +41,50 @@ export default async function Product({ params: {productId} }: MetadataProps) {
 		notFound();
 	}
 
+	async function getCartById(cartId:string) {
+		return executeGraphql(CartGetByIdDocument, { id: cartId, status: "PENDING" });
+	}
+
+	async function createCart() {
+		return executeGraphql(CartCreateDocument, { productId: productId, quantity: 1 });
+	}
+
+	async function addToCart(cardId: string, productId: string) {
+		const {product} = await executeGraphql(ProductGetDetailsDocument, {id: productId});
+		if (!product) {
+			throw new Error("Product not found");
+		}
+		return executeGraphql(CartCreateDocument, { id: cardId, productId: productId, quantity: 1 });
+	}
+
+	async function getOrCreateCart(): Promise<CartFragment> {
+		const cartId = cookies().get("cartId")?.value;
+		if (cartId) {
+			const cart = await getCartById(cartId);
+			if(cart.order) {
+				return cart.order;
+			}
+		} 
+		
+		const cart = await createCart();
+		if (!cart.createOrder) {
+			throw new Error("Failed to create cart");
+		}
+		return cart.createOrder;
+	}
+
+	async function addProductToCartAction() {
+		"use server"
+
+		const cart = await getOrCreateCart();
+		cookies().set("cartId", cart.id, {
+			httpOnly: true,
+			sameSite: "lax",
+			secure: process.env.NODE_ENV === "production",
+		});
+		await addToCart(cart.id, productId);
+	}
+
 	return (
 		<article className="flex">
 			<aside className="hidden sm:block w-32 p-4 pr-0 mt-16">
@@ -48,13 +93,18 @@ export default async function Product({ params: {productId} }: MetadataProps) {
 					<ProductsList testId="related-products" category={product.categories[0]?.slug as unknown as string} page={1} perPage={4} />
 				</Suspense>
 			</aside>
-			<section className="px-2 sm:px-12 py-20">
+			<div className="w-full px-2 sm:px-12 py-20">
 				<h1 className="text-3xl sm:text-4xl font-semibold">{product.name}</h1>
+				<form className="w-full flex justify-between" action={addProductToCartAction}>
+					<button type="submit" className="ml-auto rounded-md border bg-slate-700 px-8 py-3 text-white">
+						Add to cart
+					</button>
+				</form>	
 				<p className="m-8 flex flex-col sm:flex-row gap-8 mb-8 mx-auto max-w-md p-2 sm:p-4 sm:max-w-2xl sm:py-2">
-					{product.images.map(image => <ProductCoverImage key={image.id} image={image} />)}
+					{product.images[0] && <ProductCoverImage key={product.images[0].id} image={product.images[0]} />}
 					<ProductDescription variant="EXTENDED" product={product} />
 				</p>
-			</section>
+			</div>
 		</article>
 	);
 }

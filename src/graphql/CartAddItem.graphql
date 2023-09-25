@@ -1,0 +1,10 @@
+mutation CartAddItem($orderId: ID!, $productId: ID!, $total: Int!){
+  createOrderItem(
+     quantity: 1,
+     total: $total,
+     product: {id: $productId}
+     order: {id: $orderId}
+  ){
+    id
+  }
+}
