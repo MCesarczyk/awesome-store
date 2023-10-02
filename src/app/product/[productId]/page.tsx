@@ -5,7 +5,15 @@ import { cookies } from "next/headers";
 import { productsApi } from "@/api/poductsApi";
 
 import { executeGraphql } from "@/api/executeGraphql";
-import { CartCreateDocument, type CartFragment, CartGetByIdDocument, ProductGetDetailsDocument } from "@/gql/graphql";
+import { 
+	type CartFragment, 
+	CartGetByIdDocument, 
+	ProductGetDetailsDocument, 
+	CartCreateDocument, 
+	CartAddItemDocument,
+	type Product,
+	CartAddProductDocument
+} from "@/gql/graphql";
 import { ProductCoverImage } from "@/ui/atoms/productCoverImage";
 import { ProductDescription } from "@/ui/atoms/productDescription";
 import { ProductsList } from "@/ui/organisms/ProductList";
@@ -14,74 +22,101 @@ export const generateStaticParams = async () => {
 	const products = await productsApi.getProductsByPage(1);
 	return products.map((product) => ({
 		productId: product.id,
-	}));
-};
+	}));	
+};	
 
 interface MetadataProps {
 	params: { productId: string };
-}
+}	
 
 export async function generateMetadata({ params }: MetadataProps): Promise<Metadata> {
 	const { product } = await executeGraphql(ProductGetDetailsDocument, {
 		id: params.productId,
-	});
+	});	
 
 	return {
 		title: product?.name || "",
 		description: product?.description || "",
-	};
-}
+	};	
+}	
 
 export default async function Product({ params: {productId} }: MetadataProps) {
 	const { product } = await executeGraphql(ProductGetDetailsDocument, {
 		id: productId,
-	});
+	});	
 
 	if (!product) {
 		notFound();
-	}
-
-	async function getCartById(cartId:string) {
-		return executeGraphql(CartGetByIdDocument, { id: cartId, status: "PENDING" });
-	}
-
-	async function createCart() {
-		return executeGraphql(CartCreateDocument, { productId: productId, quantity: 1 });
-	}
-
-	async function addToCart(cardId: string, productId: string) {
-		const {product} = await executeGraphql(ProductGetDetailsDocument, {id: productId});
-		if (!product) {
-			throw new Error("Product not found");
-		}
-		return executeGraphql(CartCreateDocument, { id: cardId, productId: productId, quantity: 1 });
-	}
-
-	async function getOrCreateCart(): Promise<CartFragment> {
-		const cartId = cookies().get("cartId")?.value;
-		if (cartId) {
-			const cart = await getCartById(cartId);
-			if(cart.order) {
-				return cart.order;
-			}
-		} 
-		
-		const cart = await createCart();
-		if (!cart.createOrder) {
-			throw new Error("Failed to create cart");
-		}
-		return cart.createOrder;
-	}
-
+	}	
+	
 	async function addProductToCartAction() {
 		"use server"
+	
+		async function getCartById(cartId:string) {
+			return executeGraphql(CartGetByIdDocument, { id: cartId, status: "PENDING" });
+		}	
+	
+		async function createCart() {
+			return executeGraphql(CartCreateDocument, { total: 555 });
+		}	
+	
+		async function addToCart(cartId: string, productId: string) {
+			console.log(cartId, productId);
+			
+			const {product} = await executeGraphql(ProductGetDetailsDocument, {id: productId});
+			if (!product) {
+				throw new Error("Product not found");
+			}
 
+			const cart = await getCartById(cartId);
+			console.log(cart);
+			
+			if (!cart) {
+				throw new Error("Cart not found");
+			}
+
+			if(cart && cart?.order &&  cart.order.orderItems && Array.isArray(cart.order.orderItems) && cart.order.orderItems?.some(({productId}) => productId === productId)) {
+				const selectedOrderItem = cart.order.orderItems.find(({productId}) => productId === productId);
+				if(!selectedOrderItem) {
+					throw new Error("Order item not found");
+				}
+				
+				console.log(selectedOrderItem);
+				return executeGraphql(CartAddProductDocument, { orderId: cartId, orderItemId: selectedOrderItem.id, productId: productId, quantity: selectedOrderItem.quantity + 1, total: selectedOrderItem.total + 1 })
+			}
+			
+			return executeGraphql(CartAddItemDocument, { orderId: cartId, productId: productId, quantity: 5, total: 6 });
+		}	
+	
+		async function getOrCreateCart(): Promise<CartFragment> {
+			const cartId = cookies().get("cartId")?.value;
+			if (cartId) {
+				const cart = await getCartById(cartId);
+				if(cart.order) {
+					// console.log(cart.order);
+					return cart.order;
+				}
+			} 
+			
+			const cart = await createCart();
+
+			if (!cart.createOrder) {
+				throw new Error("Failed to create cart");
+			}
+
+			return cart.createOrder;
+		}
+		
 		const cart = await getOrCreateCart();
-		cookies().set("cartId", cart.id, {
+
+		console.log(cart);
+		
+		cart && cookies().set("cartId", cart.id, {
 			httpOnly: true,
 			sameSite: "lax",
 			secure: process.env.NODE_ENV === "production",
 		});
+
 		await addToCart(cart.id, productId);
 	}
 

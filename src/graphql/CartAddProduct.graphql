@@ -1,5 +1,11 @@
-mutation CartAddProduct($orderId: ID!, $productId: ID!, $total: Int!) {
-  createOrderItem(quantity: 1, total: $total, product: {id:$productId}, order: {id:$orderId}) {
+mutation CartAddProduct($orderItemId: ID!, $orderId: ID!, $productId: ID!, $quantity: Int!, $total: Int!){
+  updateOrderItem(
+    id: $orderItemId
+     quantity: $quantity,
+     total: $total,
+     product: {id: $productId}
+     order: {id: $orderId}
+  ){
     id
   }
 }
