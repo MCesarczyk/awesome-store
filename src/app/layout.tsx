@@ -10,6 +10,7 @@ import { CategoriesGetListDocument, CollectionsGetListDocument } from "@/gql/gra
 import { type Collection, type Category } from "@/types";
 import { Search } from "@/ui/organisms/search";
 import "./globals.css";
+import { NavigationLink } from "@/ui/atoms/navigationLink";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -57,6 +58,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 						<Suspense>
 							<Search />
 						</Suspense>
+						<NavigationLink href="/cart">&#x1F6D2;</NavigationLink>
 					</Navbar>
 				</header>
 				<main>{children}</main>

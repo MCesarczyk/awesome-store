@@ -1,6 +1,7 @@
 import { type Category, type ProductSize, type ProductColor } from "@/types";
 import { ColorSelector } from "@/ui/organisms/colorSelector";
 import { SizeSelector } from "@/ui/organisms/sizeSelector";
+import { formatMoney } from "@/utils";
 
 interface ProductDescriptionProps {
 	product: {
@@ -29,7 +30,7 @@ export const ProductDescription = ({
 			<SizeSelector sizes={product.sizes}  />
 			<ColorSelector colors={product.colors} />
 			<p className="flex flex-col text-gray-400">
-				<span className="text-xs mr-2">Price:</span>${(product.price/100).toFixed(2)}
+				<span className="text-xs mr-2">Price:</span>${formatMoney(product.price)}
 			</p>
 			<p className="text-sm">{product.description}</p>
 		</div>
