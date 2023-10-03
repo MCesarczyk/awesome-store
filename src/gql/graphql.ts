@@ -296,6 +296,14 @@ export type CartGetByIdQuery = { __typename?: 'Query', order?: { __typename?: 'O
 
 export type CartFragment = { __typename?: 'Order', id: string, total: number, orderItems: Array<{ __typename?: 'OrderItem', id: string, productId: string, quantity: number, total: number }> };
 
+export type CartUpdateTotalMutationVariables = Exact<{
+  id: Scalars['ID']['input'];
+  total: Scalars['Int']['input'];
+}>;
+
+
+export type CartUpdateTotalMutation = { __typename?: 'Mutation', updateOrder: { __typename?: 'Order', id: string, total: number, orderItems: Array<{ __typename?: 'OrderItem', id: string, productId: string, quantity: number, total: number }> } };
+
 export type CategoriesGetListQueryVariables = Exact<{
   first?: InputMaybe<Scalars['Int']['input']>;
   skip?: InputMaybe<Scalars['Int']['input']>;
@@ -432,6 +440,22 @@ export const CartGetByIdDocument = new TypedDocumentString(`
     total
   }
 }`) as unknown as TypedDocumentString<CartGetByIdQuery, CartGetByIdQueryVariables>;
+export const CartUpdateTotalDocument = new TypedDocumentString(`
+    mutation CartUpdateTotal($id: ID!, $total: Int!) {
+  updateOrder(id: $id, total: $total) {
+    ...Cart
+  }
+}
+    fragment Cart on Order {
+  id
+  total
+  orderItems {
+    id
+    productId
+    quantity
+    total
+  }
+}`) as unknown as TypedDocumentString<CartUpdateTotalMutation, CartUpdateTotalMutationVariables>;
 export const CategoriesGetListDocument = new TypedDocumentString(`
     query CategoriesGetList($first: Int, $skip: Int) {
   categories(first: $first, skip: $skip) {

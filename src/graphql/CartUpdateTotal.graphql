@@ -1,0 +1,5 @@
+mutation CartUpdateTotal($id: ID!, $total: Int!) {
+  updateOrder(id: $id, total: $total) {
+    ...Cart
+  }
+}

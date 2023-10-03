@@ -19,6 +19,7 @@ const documents = {
     "mutation CartCreate($total: Int!) {\n  createOrder(total: $total) {\n    ...Cart\n  }\n}": types.CartCreateDocument,
     "query CartGetById($id: ID!, $status: String!) {\n  order(id: $id, status: $status) {\n    ...Cart\n  }\n}": types.CartGetByIdDocument,
     "fragment Cart on Order {\n  id\n  total\n  orderItems {\n    id\n    productId\n    quantity\n    total\n  }\n}": types.CartFragmentDoc,
+    "mutation CartUpdateTotal($id: ID!, $total: Int!) {\n  updateOrder(id: $id, total: $total) {\n    ...Cart\n  }\n}": types.CartUpdateTotalDocument,
     "query CategoriesGetList($first: Int, $skip: Int) {\n  categories(first: $first, skip: $skip) {\n    id\n    name\n    slug\n    description\n  }\n}": types.CategoriesGetListDocument,
     "query CollectionsGetList($first: Int, $skip: Int) {\n  collections(first: $first, skip: $skip) {\n    id\n    name\n    slug\n    description\n  }\n}": types.CollectionsGetListDocument,
     "query ProductGetDetails($id: ID!) {\n  product(id: $id) {\n    id\n    name\n    slug\n    categories {\n      id\n      name\n      slug\n      description\n    }\n    collections {\n      id\n      name\n      slug\n      description\n    }\n    description\n    sizes {\n      id\n      name\n      value\n    }\n    colors {\n      id\n      name\n      value\n    }\n    images {\n      id\n      url\n      alt\n    }\n    price\n  }\n}": types.ProductGetDetailsDocument,
@@ -47,6 +48,10 @@ export function graphql(source: "query CartGetById($id: ID!, $status: String!) {
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "fragment Cart on Order {\n  id\n  total\n  orderItems {\n    id\n    productId\n    quantity\n    total\n  }\n}"): typeof import('./graphql').CartFragmentDoc;
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "mutation CartUpdateTotal($id: ID!, $total: Int!) {\n  updateOrder(id: $id, total: $total) {\n    ...Cart\n  }\n}"): typeof import('./graphql').CartUpdateTotalDocument;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

@@ -12,7 +12,8 @@ import {
 	CartCreateDocument, 
 	CartAddItemDocument,
 	type Product,
-	CartAddProductDocument
+	CartAddProductDocument,
+	CartUpdateTotalDocument
 } from "@/gql/graphql";
 import { ProductCoverImage } from "@/ui/atoms/productCoverImage";
 import { ProductDescription } from "@/ui/atoms/productDescription";
@@ -61,7 +62,7 @@ export default async function Product({ params: {productId} }: MetadataProps) {
 		}	
 	
 		async function addToCart(cartId: string, productId: string) {
-			console.log(cartId, productId);
+			console.log('cartId: ', cartId, 'productId: ', productId);
 			
 			const {product} = await executeGraphql(ProductGetDetailsDocument, {id: productId});
 			if (!product) {
@@ -69,20 +70,27 @@ export default async function Product({ params: {productId} }: MetadataProps) {
 			}
 
 			const cart = await getCartById(cartId);
-			console.log(cart);
+			console.log('cart total: ', cart.order?.total);
 			
 			if (!cart) {
 				throw new Error("Cart not found");
 			}
 
-			if(cart && cart?.order &&  cart.order.orderItems && Array.isArray(cart.order.orderItems) && cart.order.orderItems?.some(({productId}) => productId === productId)) {
-				const selectedOrderItem = cart.order.orderItems.find(({productId}) => productId === productId);
+			if(cart && cart?.order &&  cart.order.orderItems && Array.isArray(cart.order.orderItems) && cart.order.orderItems?.some((item) => item.productId === productId)) {
+				const selectedOrderItem = cart.order.orderItems.find((item) => item.productId === productId);
+				console.log('selectedOrderItem: ', selectedOrderItem);
+				
 				if(!selectedOrderItem) {
 					throw new Error("Order item not found");
 				}
 				
-				console.log(selectedOrderItem);
-				return executeGraphql(CartAddProductDocument, { orderId: cartId, orderItemId: selectedOrderItem.id, productId: productId, quantity: selectedOrderItem.quantity + 1, total: selectedOrderItem.total + 1 })
+				const addProductToCart = async () => {
+					await executeGraphql(CartAddProductDocument, { orderId: cartId, orderItemId: selectedOrderItem.id, productId: productId, quantity: selectedOrderItem.quantity + 1, total: selectedOrderItem.total + product.price});
+					// eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+					await executeGraphql(CartUpdateTotalDocument, { id: cartId, total: (cart.order?.total || 0) + product.price});
+				};
+
+				return addProductToCart();
 			}
 			
 			return executeGraphql(CartAddItemDocument, { orderId: cartId, productId: productId, quantity: 5, total: 6 });
@@ -93,7 +101,6 @@ export default async function Product({ params: {productId} }: MetadataProps) {
 			if (cartId) {
 				const cart = await getCartById(cartId);
 				if(cart.order) {
-					// console.log(cart.order);
 					return cart.order;
 				}
 			} 
@@ -108,8 +115,6 @@ export default async function Product({ params: {productId} }: MetadataProps) {
 		}
 		
 		const cart = await getOrCreateCart();
-
-		console.log(cart);
 		
 		cart && cookies().set("cartId", cart.id, {
 			httpOnly: true,
