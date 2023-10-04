@@ -68,6 +68,7 @@ export type Mutation = {
   deleteOrder: Order;
   updateOrder: Order;
   updateOrderItem: OrderItem;
+  updateProductQuantity: OrderItem;
 };
 
 
@@ -101,6 +102,13 @@ export type MutationUpdateOrderItemArgs = {
   id: Scalars['ID']['input'];
   order: OrderInput;
   product: ProductInput;
+  quantity: Scalars['Int']['input'];
+  total: Scalars['Int']['input'];
+};
+
+
+export type MutationUpdateProductQuantityArgs = {
+  productId: Scalars['ID']['input'];
   quantity: Scalars['Int']['input'];
   total: Scalars['Int']['input'];
 };
@@ -296,6 +304,15 @@ export type CartGetByIdQuery = { __typename?: 'Query', order?: { __typename?: 'O
 
 export type CartFragment = { __typename?: 'Order', id: string, total: number, orderItems: Array<{ __typename?: 'OrderItem', id: string, productId: string, quantity: number, total: number }> };
 
+export type CartUpdateQuantityMutationVariables = Exact<{
+  productId: Scalars['ID']['input'];
+  quantity: Scalars['Int']['input'];
+  total: Scalars['Int']['input'];
+}>;
+
+
+export type CartUpdateQuantityMutation = { __typename?: 'Mutation', updateProductQuantity: { __typename?: 'OrderItem', id: string } };
+
 export type CartUpdateTotalMutationVariables = Exact<{
   id: Scalars['ID']['input'];
   total: Scalars['Int']['input'];
@@ -440,6 +457,13 @@ export const CartGetByIdDocument = new TypedDocumentString(`
     total
   }
 }`) as unknown as TypedDocumentString<CartGetByIdQuery, CartGetByIdQueryVariables>;
+export const CartUpdateQuantityDocument = new TypedDocumentString(`
+    mutation CartUpdateQuantity($productId: ID!, $quantity: Int!, $total: Int!) {
+  updateProductQuantity(productId: $productId, quantity: $quantity, total: $total) {
+    id
+  }
+}
+    `) as unknown as TypedDocumentString<CartUpdateQuantityMutation, CartUpdateQuantityMutationVariables>;
 export const CartUpdateTotalDocument = new TypedDocumentString(`
     mutation CartUpdateTotal($id: ID!, $total: Int!) {
   updateOrder(id: $id, total: $total) {
