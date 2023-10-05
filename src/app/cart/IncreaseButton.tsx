@@ -1,8 +1,7 @@
 "use client";
 
 import { experimental_useOptimistic as useOptimistic } from "react";
-import { executeGraphql } from "@/api/executeGraphql";
-import { CartUpdateQuantityDocument } from "@/gql/graphql";
+import { changeItemQuantity } from "@/app/cart/actions";
  
 export function IncreaseButton({ itemId, quantity }: { itemId: string; quantity: number }) {
 	const [optimisticQuantity, setOptimisticQuantity] = useOptimistic(
@@ -18,7 +17,7 @@ export function IncreaseButton({ itemId, quantity }: { itemId: string; quantity:
 				type="submit"
 				formAction={async () => {
 					setOptimisticQuantity(optimisticQuantity + 1);
-					await executeGraphql(CartUpdateQuantityDocument, {productId: itemId,quantity: optimisticQuantity + 1, total: 0});
+					await changeItemQuantity(itemId, optimisticQuantity + 1);
 				}}
 			>
 				+

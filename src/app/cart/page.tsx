@@ -38,10 +38,12 @@ export default async function CartPage() {
 						}
 
 						return (
-							<tr key={item.productId}>
+							<tr key={item.id}>
 								<td>{item.quantity}</td>
-								<IncreaseButton itemId={item.id} quantity={item.quantity} />
 								<td>{formatMoney(item.total)}</td>
+								<td>
+									<IncreaseButton itemId={item.id} quantity={item.quantity} />
+								</td>
 							</tr>
 						);
 					})}
