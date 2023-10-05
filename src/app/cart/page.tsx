@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 import { executeGraphql } from "@/api/executeGraphql";
 import { CartGetByIdDocument } from "@/gql/graphql";
 import { formatMoney } from "@/utils";
-import { IncreaseButton } from "@/app/cart/IncreaseButton";
+import { UpdateButtons } from "@/app/cart/updateButtons";
  
 export default async function CartPage() {
 	const cartId = cookies().get("cartId")?.value;
@@ -42,7 +42,7 @@ export default async function CartPage() {
 								<td>{item.quantity}</td>
 								<td>{formatMoney(item.total)}</td>
 								<td>
-									<IncreaseButton itemId={item.id} quantity={item.quantity} />
+									<UpdateButtons itemId={item.id} quantity={item.quantity} />
 								</td>
 							</tr>
 						);
