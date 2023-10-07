@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Suspense } from "react";
+import { cookies } from "next/headers";
 import { APP_TITLE } from "@/constants";
 import { Navbar } from "@/ui/organisms/navbar";
 import { Footer } from "@/ui/organisms/Footer";
 import { Dropdown } from "@/ui/molecules/dropdown";
 import { executeGraphql } from "@/api/executeGraphql";
-import { CategoriesGetListDocument, CollectionsGetListDocument } from "@/gql/graphql";
+import { CartGetByIdDocument, CategoriesGetListDocument, CollectionsGetListDocument } from "@/gql/graphql";
 import { type Collection, type Category } from "@/types";
 import { Search } from "@/ui/organisms/search";
 import "./globals.css";
@@ -23,6 +24,15 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 	const {categories} = await executeGraphql(CategoriesGetListDocument, {});
 
 	const {collections} = await executeGraphql(CollectionsGetListDocument, {});
+
+	const cartId = cookies().get("cartId")?.value;
+	const cart = cartId
+		? await executeGraphql(CartGetByIdDocument, {
+				id: cartId, status: "PENDING"
+			})
+		: null;
+ 
+	const count = cart?.order?.orderItems.length || 0;
 
 	if (!categories || !collections) {
 		return;
@@ -59,6 +69,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 							<Search />
 						</Suspense>
 						<NavigationLink href="/cart">&#x1F6D2;</NavigationLink>
+						{count}
 					</Navbar>
 				</header>
 				<main>{children}</main>

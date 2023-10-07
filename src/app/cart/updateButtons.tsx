@@ -1,7 +1,7 @@
 "use client";
 
 import { experimental_useOptimistic as useOptimistic } from "react";
-import { changeItemQuantity } from "@/app/cart/actions";
+import { changeItemQuantity, removeItem } from "@/app/cart/actions";
  
 export function UpdateButtons({ itemId, quantity }: { itemId: string; quantity: number }) {
 	const [optimisticQuantity, setOptimisticQuantity] = useOptimistic(
@@ -31,6 +31,11 @@ export function UpdateButtons({ itemId, quantity }: { itemId: string; quantity: 
 				}}
 			>
 				-
+			</button>
+			<button className="h-6 w-6" formAction={async()=>{
+				await removeItem(itemId);
+			}}>
+				&#x1F5D1;
 			</button>
 		</form>
 	);
