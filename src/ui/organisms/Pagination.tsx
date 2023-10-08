@@ -6,9 +6,10 @@ interface PaginationProps {
 	itemsNumber: number;
 	page?: number;
 	perPage?: number;
+	withSegment?: boolean;
 }
 
-export const Pagination = ({ path, itemsNumber, page = 1, perPage = 10 }: PaginationProps) => {
+export const Pagination = ({ path, itemsNumber, page = 1, perPage = 10, withSegment }: PaginationProps) => {
 	const pages = itemsNumber ? Math.ceil(itemsNumber / perPage) : 1;
 
 	if (!pages) {
@@ -26,7 +27,7 @@ export const Pagination = ({ path, itemsNumber, page = 1, perPage = 10 }: Pagina
 					<li key={page}>
 						<Link
 							key={page}
-							href={`${path as Route}?page=${index + 1}`}
+							href={withSegment ? `${`${path}/${index + 1}` as Route}` : `${path as Route}?page=${index + 1}`}
 							className={`text-2xl font-bold text-pink-600 hover:text-pink-300`}
 						>
 							{index + 1}

@@ -8,7 +8,7 @@ import { Footer } from "@/ui/organisms/Footer";
 import { Dropdown } from "@/ui/molecules/dropdown";
 import { executeGraphql } from "@/api/executeGraphql";
 import { CartGetByIdDocument, CategoriesGetListDocument, CollectionsGetListDocument } from "@/gql/graphql";
-import { type Collection, type Category } from "@/types";
+import { type Collection } from "@/types";
 import { Search } from "@/ui/organisms/search";
 import "./globals.css";
 import { NavigationLink } from "@/ui/atoms/navigationLink";
@@ -41,7 +41,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 	return (
 		<html lang="en">
 			<body className={`${inter.className} h-screen flex flex-col`}>
-				<header>
+				<header className="flex flex-col items-end">
 					<Navbar>
 						<li className="flex items-center">
 							Collection:
@@ -54,23 +54,26 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 								}))}
 							/>
 						</li>
-						<li className="flex items-center">
+						{/* <li className="flex items-center">
 							Category:
 						</li>
 						<li>
 							<Dropdown
 								options={categories.map((category) => ({
-									href: `/categories/${(category as Category).slug}`,
+									href: `/categories/${(category as Category).slug}/1`,
 									children: (category as Category).name,
 								}))}
 							/>
-						</li>
+						</li> */}
+						<NavigationLink href={`/categories/${categories[0]?.slug}/1`}>Categories</NavigationLink>
 						<Suspense>
 							<Search />
 						</Suspense>
+					</Navbar>
+					<div>
 						<NavigationLink href="/cart">&#x1F6D2;</NavigationLink>
 						{count}
-					</Navbar>
+					</div>
 				</header>
 				<main>{children}</main>
 				<Footer />
