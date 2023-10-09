@@ -1,9 +1,21 @@
 import { notFound } from "next/navigation";
+import { type Metadata } from "next";
 import { executeGraphql } from "@/api/executeGraphql";
 import { CategoriesGetListDocument, ProductsGetByCategorySlugDocument } from "@/gql/graphql";
 import { NavigationLink } from "@/ui/atoms/navigationLink";
 import { Pagination } from "@/ui/organisms/Pagination";
 import { ProductListItem } from "@/ui/molecules/productListItem";
+
+interface MetadataProps {
+	params: { categorySlug: string };
+}	
+
+export async function generateMetadata({params:{categorySlug}}: MetadataProps): Promise<Metadata> {
+	return {
+		title: `Categories: ${categorySlug.slice(0, 1).toUpperCase()}${categorySlug.slice(1)}`,
+		description: "Page contains products grpuoped by categories",
+	};	
+}	
 
 interface CategoriesPageProps {
   params: { categorySlug: string, pageNo: string };
@@ -30,7 +42,7 @@ export default async function CategoriesList({params:{categorySlug, pageNo}}:Cat
 		<>
 			<section className="mx-auto p-12">
 				{/* 	eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-				<h1 className="text-4xl font-semibold my-8">Category {categories.find(({slug}: any) => slug === categorySlug)?.name}</h1>
+				<h1 className="text-4xl font-semibold my-8">Categories: {categories.find(({slug}: any) => slug === categorySlug)?.name}</h1>
 				<ul className="flex mb-8">
 					{categories.map((category) => (
 						category &&<li key={category.id} className="block">
