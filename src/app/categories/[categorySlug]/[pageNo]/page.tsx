@@ -13,7 +13,7 @@ interface MetadataProps {
 export async function generateMetadata({params:{categorySlug}}: MetadataProps): Promise<Metadata> {
 	return {
 		title: `Categories: ${categorySlug.slice(0, 1).toUpperCase()}${categorySlug.slice(1)}`,
-		description: "Page contains products grpuoped by categories",
+		description: "Page contains products grouped by categories",
 	};	
 }	
 
@@ -43,7 +43,7 @@ export default async function CategoriesList({params:{categorySlug, pageNo}}:Cat
 			<section className="mx-auto p-12">
 				{/* 	eslint-disable-next-line @typescript-eslint/no-explicit-any */}
 				<h1 className="text-4xl font-semibold my-8">Categories: {categories.find(({slug}: any) => slug === categorySlug)?.name}</h1>
-				<ul className="flex mb-8">
+				<ul className="flex mb-8 gap-2">
 					{categories.map((category) => (
 						category &&<li key={category.id} className="block">
 							<NavigationLink href={`/categories/${category.slug}/1`}>{category.name}</NavigationLink>

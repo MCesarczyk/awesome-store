@@ -5,13 +5,11 @@ import { cookies } from "next/headers";
 import { APP_TITLE } from "@/constants";
 import { Navbar } from "@/ui/organisms/navbar";
 import { Footer } from "@/ui/organisms/Footer";
-import { Dropdown } from "@/ui/molecules/dropdown";
 import { executeGraphql } from "@/api/executeGraphql";
 import { CartGetByIdDocument, CategoriesGetListDocument, CollectionsGetListDocument } from "@/gql/graphql";
-import { type Collection } from "@/types";
 import { Search } from "@/ui/organisms/search";
-import "./globals.css";
 import { NavigationLink } from "@/ui/atoms/navigationLink";
+import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -43,28 +41,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 			<body className={`${inter.className} h-screen flex flex-col`}>
 				<header className="flex flex-col items-end">
 					<Navbar>
-						<li className="flex items-center">
-							Collection:
-						</li>
-						<li>
-							<Dropdown
-								options={collections.map((collection) => ({
-									href: `/collections/${(collection as Collection).slug}`,
-									children: (collection as Collection).name,
-								}))}
-							/>
-						</li>
-						{/* <li className="flex items-center">
-							Category:
-						</li>
-						<li>
-							<Dropdown
-								options={categories.map((category) => ({
-									href: `/categories/${(category as Category).slug}/1`,
-									children: (category as Category).name,
-								}))}
-							/>
-						</li> */}
+						<NavigationLink href={`/collections/${collections[0]?.slug}/1`}>Collections</NavigationLink>
 						<NavigationLink href={`/categories/${categories[0]?.slug}/1`}>Categories</NavigationLink>
 						<Suspense>
 							<Search />
