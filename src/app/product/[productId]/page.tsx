@@ -136,7 +136,7 @@ export default async function Product({ params: {productId} }: MetadataProps) {
 			<div className="w-full px-2 sm:px-12 py-20">
 				<h1 className="text-3xl sm:text-4xl font-semibold">{product.name}</h1>
 				<form className="w-full flex justify-between" action={addProductToCartAction}>
-					<button type="submit" className="ml-auto rounded-md border bg-slate-700 px-8 py-3 text-white">
+					<button type="submit" data-testid="add-to-cart-button" className="ml-auto rounded-md border bg-slate-700 px-8 py-3 text-white">
 						Add to cart
 					</button>
 				</form>	
@@ -144,6 +144,15 @@ export default async function Product({ params: {productId} }: MetadataProps) {
 					{product.images[0] && <ProductCoverImage key={product.images[0].id} image={product.images[0]} />}
 					<ProductDescription variant="EXTENDED" product={product} />
 				</p>
+				<form data-testid="add-review-form" className="w-full text-right pr-12 sm:pr-24 lg:pr-48 xl:pr-96">
+					<ul className="flex flex-col gap-2">
+						<li>Headline <input type="text" name="headline" /></li>
+						<li>Content <input type="text" name="content" /></li>
+						<li>Rating <input type="text" name="rating" /></li>
+						<li>Name <input type="text" name="name" /></li>
+						<li>Email <input type="text" name="email" /></li>
+					</ul>
+				</form>
 			</div>
 		</article>
 	);
