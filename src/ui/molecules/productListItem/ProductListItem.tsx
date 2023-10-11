@@ -12,6 +12,7 @@ export const ProductListItem = ({ product }: ProductListItemProps) => {
 		<li key={product.id} className="w-full">
 			<article>
 				<Link href={`/product/${product.id}`}>
+				<h3 role="heading" className="text-sm font-semibold">{product.name}</h3>
 					<ProductCoverImage image={product.images[0]} />
 				</Link>
 				<ProductDescription product={product} />

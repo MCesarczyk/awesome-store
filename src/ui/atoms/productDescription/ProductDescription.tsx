@@ -39,7 +39,6 @@ export const ProductDescription = ({
 
 	return (
 		<div className="mt-2 flex flex-col justify-between text-white">
-			<h3 className="text-sm font-semibold">{product.name}</h3>
 			<div className="flex justify-between gap-2">
 				<p className="text-sm text-gray-400">
 					<span className="sr-only">Category:</span>

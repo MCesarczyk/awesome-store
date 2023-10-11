@@ -40,6 +40,8 @@ export interface Product {
   id: string;
   name: string;
   slug: string;
+  colors: ProductColor[];
+  sizes: ProductSize[];
   categories: Category[];
   collections: Collection[];
   description: string;

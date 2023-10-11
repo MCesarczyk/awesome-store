@@ -52,7 +52,7 @@ export default async function CategoriesList({params:{categorySlug, pageNo}}:Cat
 				</ul>
         <ul data-testid="products-list" className="grid sm:grid-cols-2 gap-8 lg:grid-cols-4">
           {products.map((product) => (
-            product ? <ProductListItem key={product.id} product={product} /> : null
+            product ? <ProductListItem key={product.id} product={{...product, colors:[], sizes: []}} /> : null
           ))}
         </ul>
       </section>

@@ -5,7 +5,7 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 export const useQueryParameter = (key: string) => {
   const search = useSearchParams();
   const searchParams = new URLSearchParams(search);
-  return searchParams.get(key);
+  return decodeURIComponent(searchParams.get(key) ?? '');
 };
 
 export const useReplaceQueryParameter = () => {
@@ -17,13 +17,13 @@ export const useReplaceQueryParameter = () => {
     const searchParams = new URLSearchParams(search);
 
     if (value) {
-      searchParams.set(key, value);
+      searchParams.set(key, encodeURIComponent(value));
     } else {
       searchParams.delete(key);
     }
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    router.push(`${pathname}?${searchParams.toString()}`);
+    router.push(`${pathname}search?${decodeURIComponent(searchParams).toString()}`);
   };
 };
