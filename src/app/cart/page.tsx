@@ -13,7 +13,9 @@ export default async function CartPage() {
 	}
  
 	const { order: cart } = await executeGraphql(CartGetByIdDocument, { 
-		id: cartId, status: "PENDING"
+		id: cartId, status: "PENDING", next: {
+			revalidate: 0,
+		}
 	});
  
 	if (!cart) {

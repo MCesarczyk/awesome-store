@@ -11,9 +11,10 @@ export function UpdateButtons({ itemId, quantity }: { itemId: string; quantity: 
  
 	return (
 		<form className="flex">
-			<span className="w-8 text-center">{optimisticQuantity}</span>
+			<span className="w-8 text-center" data-testid="quantity">{optimisticQuantity}</span>
 			<button
 				className="h-6 w-6 border"
+				data-testid="increment"
 				type="submit"
 				formAction={async () => {
 					setOptimisticQuantity(optimisticQuantity + 1);
@@ -24,6 +25,7 @@ export function UpdateButtons({ itemId, quantity }: { itemId: string; quantity: 
 			</button>
 			<button
 				className="h-6 w-6 border"
+				data-testid="decrement"
 				type="submit"
 				formAction={async () => {
 					setOptimisticQuantity(optimisticQuantity - 1);

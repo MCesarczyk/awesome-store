@@ -62,24 +62,18 @@ export default async function Product({ params: {productId} }: MetadataProps) {
 		}	
 	
 		async function addToCart(cartId: string, productId: string) {
-			console.log('cartId: ', cartId, 'productId: ', productId);
-			
 			const {product} = await executeGraphql(ProductGetDetailsDocument, {id: productId});
 			if (!product) {
 				throw new Error("Product not found");
 			}
 
 			const cart = await getCartById(cartId);
-			console.log('cart total: ', cart.order?.total);
-			
 			if (!cart) {
 				throw new Error("Cart not found");
 			}
 
 			if(cart && cart?.order &&  cart.order.orderItems && Array.isArray(cart.order.orderItems) && cart.order.orderItems?.some((item) => item.productId === productId)) {
 				const selectedOrderItem = cart.order.orderItems.find((item) => item.productId === productId);
-				console.log('selectedOrderItem: ', selectedOrderItem);
-				
 				if(!selectedOrderItem) {
 					throw new Error("Order item not found");
 				}
@@ -93,7 +87,7 @@ export default async function Product({ params: {productId} }: MetadataProps) {
 				return addProductToCart();
 			}
 			
-			return executeGraphql(CartAddItemDocument, { orderId: cartId, productId: productId, quantity: 5, total: 6 });
+			return executeGraphql(CartAddItemDocument, { orderId: cartId, productId: productId, quantity: 1, total: 1 });
 		}	
 	
 		async function getOrCreateCart(): Promise<CartFragment> {
