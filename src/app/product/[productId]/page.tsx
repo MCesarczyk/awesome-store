@@ -30,9 +30,9 @@ interface MetadataProps {
 	params: { productId: string };
 }	
 
-export async function generateMetadata({ params }: MetadataProps): Promise<Metadata> {
+export async function generateMetadata({ params: {productId} }: MetadataProps): Promise<Metadata> {
 	const { product } = await executeGraphql(ProductGetDetailsDocument, {
-		id: params.productId,
+		id: productId,
 	});	
 
 	return {
