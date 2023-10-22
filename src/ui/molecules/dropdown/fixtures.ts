@@ -7,14 +7,6 @@ export const createNavigationOptions = <T extends string>(): NavigationLinkProps
     exact: true,
   },
   {
-    href: "/categories",
-    children: "Categories",
-  },
-  {
-    href: "/collections",
-    children: "Collections",
-  },
-  {
     href: "/products",
     children: "Products",
   },
