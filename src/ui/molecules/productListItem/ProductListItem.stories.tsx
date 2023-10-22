@@ -31,5 +31,7 @@ Default.args = {
       collections: [{id: '1', name: 'Summer Collection', slug: 'summer-collection', description: '' }],
       images: [{ id:'1', url: 'https://picsum.photos/640/640', alt: 'Product'}],
       price: 29,
+      colors: [{id:'1', name:'Black', value:'#000'},{id:'2', name:'White', value:'#fff'}],
+      sizes: [{id:'1', name:'S', value: 1},{id:'2', name:'M', value: 2},{id:'3', name:'L', value: 3},{id:'4', name:'XL', value: 4}],
   },
 };
