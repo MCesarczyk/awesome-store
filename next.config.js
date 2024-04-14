@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+	pageExtensions: ['ts', 'tsx', 'mdx'],
 	experimental: {
-		pageExtensions: ['ts', 'tsx', 'mdx'],
 		typedRoutes: true,
 		serverActions: true,
 		mdxRs: true,
