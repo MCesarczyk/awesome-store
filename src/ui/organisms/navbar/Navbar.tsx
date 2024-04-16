@@ -1,4 +1,5 @@
 import { type ReactNode } from "react";
+import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import { NavigationLink } from "@/ui/atoms/navigationLink";
 
 interface NavbarProps {
@@ -6,6 +7,7 @@ interface NavbarProps {
 }
 
 export const Navbar = ({ children }:NavbarProps) => (
+	<>
 	<nav className="w-full bg-blue-700 bg-opacity-50 fixed text-white align-baseline">
 		<ul className="flex gap-1 align-middle">
 			<li>
@@ -17,4 +19,11 @@ export const Navbar = ({ children }:NavbarProps) => (
 			{children}
 		</ul>
 	</nav>
+	<SignedIn>
+		<UserButton />
+	</SignedIn>
+	<SignedOut>
+		<SignInButton />
+	</SignedOut>
+	</>
 );
