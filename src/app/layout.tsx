@@ -1,7 +1,8 @@
+import { Suspense } from "react";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { Suspense } from "react";
 import { cookies } from "next/headers";
+import { ClerkProvider } from "@clerk/nextjs";
 import { APP_TITLE } from "@/constants";
 import { Navbar } from "@/ui/organisms/navbar";
 import { Footer } from "@/ui/organisms/Footer";
@@ -48,25 +49,27 @@ export default async function RootLayout({ children, modal }: { children: React.
 	}
 
 	return (
-		<html lang="en">
-			<body className={`${inter.className} h-screen flex flex-col`}>
-				<header className="flex flex-col items-end">
-					<Navbar>
-						<NavigationLink href={`/collections/${collections[0]?.slug}/1`}>Collections</NavigationLink>
-						<NavigationLink href={`/categories/${categories[0]?.slug}/1`}>Categories</NavigationLink>
-						<Suspense>
-							<Search />
-						</Suspense>
-					</Navbar>
-					<div>
-						<NavigationLink href="/cart">&#x1F6D2;</NavigationLink>
-						{count}
-					</div>
-				</header>
-				<main>{children}</main>
-				<Footer />
-				{modal}
-			</body>
-		</html>
+		<ClerkProvider>
+			<html lang="en">
+				<body className={`${inter.className} h-screen flex flex-col`}>
+					<header className="flex flex-col items-end">
+						<Navbar>
+							<NavigationLink href={`/collections/${collections[0]?.slug}/1`}>Collections</NavigationLink>
+							<NavigationLink href={`/categories/${categories[0]?.slug}/1`}>Categories</NavigationLink>
+							<Suspense>
+								<Search />
+							</Suspense>
+						</Navbar>
+						<div>
+							<NavigationLink href="/cart">&#x1F6D2;</NavigationLink>
+							{count}
+						</div>
+					</header>
+					<main>{children}</main>
+					<Footer />
+					{modal}
+				</body>
+			</html>
+		</ClerkProvider>
 	);
 }
