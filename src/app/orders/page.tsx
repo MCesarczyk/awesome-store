@@ -1,11 +1,21 @@
-import { auth, currentUser } from "@clerk/nextjs";
+import { currentUser } from "@clerk/nextjs";
 
 export default async function OrdersPage() {
+  const user = await currentUser();
+  const email = user?.emailAddresses[0]?.emailAddress;
+
+  if(!email) {
+    return (
+      <div>
+        <p>No email found</p>
+      </div>
+    );
+  }
+
+  // TODO: Fetch orders for the user
+
   return (
     <div>
-      <h2>Auth:</h2>
-      <pre>{JSON.stringify(auth(), null, 2)}</pre>
-      <h2>User:</h2>
       <pre>{JSON.stringify(await currentUser(), null, 2)}</pre>
     </div>
   );
