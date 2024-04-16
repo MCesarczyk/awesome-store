@@ -2,7 +2,7 @@ import { authMiddleware } from "@clerk/nextjs";
 
 // eslint-disable-next-line import/no-default-export
 export default authMiddleware({
-  publicRoutes: ["/", "/login", "/signup"],
+  publicRoutes: ["/", "/search", "/cart", "/categories", "/categories/(.*)", "/collections", "/collections/(.*)", "/products", "/products/(.*)", "/product", "/product/(.*)"],
 });
 
 export const config = {
