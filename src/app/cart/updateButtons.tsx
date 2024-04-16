@@ -1,10 +1,10 @@
 "use client";
 
-import { experimental_useOptimistic as useOptimistic } from "react";
+import { experimental_useOptimistic } from "react";
 import { changeItemQuantity, removeItem } from "@/app/cart/actions";
  
 export function UpdateButtons({ itemId, quantity }: { itemId: string; quantity: number }) {
-	const [optimisticQuantity, setOptimisticQuantity] = useOptimistic(
+	const [optimisticQuantity, setOptimisticQuantity] = experimental_useOptimistic(
 		quantity,
 		(_state, newQuantity: number) => newQuantity,
 	);
