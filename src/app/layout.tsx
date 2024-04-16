@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   },
 }
 
-export default async function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children, modal }: { children: React.ReactNode, modal: React.ReactNode }) {
 	const {categories} = await executeGraphql(CategoriesGetListDocument, {});
 
 	const {collections} = await executeGraphql(CollectionsGetListDocument, {});
@@ -65,6 +65,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 				</header>
 				<main>{children}</main>
 				<Footer />
+				{modal}
 			</body>
 		</html>
 	);
