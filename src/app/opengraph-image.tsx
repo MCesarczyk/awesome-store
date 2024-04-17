@@ -1,4 +1,4 @@
-import { ImageResponse } from "next/server";
+import { ImageResponse } from "next/og";
  
 export const runtime = "edge";
  
@@ -11,7 +11,7 @@ export const size = {
  
 export const contentType = "image/png";
  
-// eslint-disable-next-line import/no-default-export
+
 export default async function og() {
 	return new ImageResponse(
 		(

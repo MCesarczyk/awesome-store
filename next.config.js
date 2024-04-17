@@ -1,9 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+	"output": "standalone",
+	pageExtensions: ['ts', 'tsx', 'mdx'],
 	experimental: {
-		pageExtensions: ['ts', 'tsx', 'mdx'],
 		typedRoutes: true,
-		serverActions: true,
 		mdxRs: true,
 	},
 };
