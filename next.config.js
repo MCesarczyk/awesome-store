@@ -1,9 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
 	pageExtensions: ['ts', 'tsx', 'mdx'],
+	serverActions: true,
 	experimental: {
 		typedRoutes: true,
-		serverActions: true,
 		mdxRs: true,
 	},
 };

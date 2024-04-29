@@ -23,6 +23,7 @@
 		"import/no-cycle": "error",
 		"import/no-default-export": "error",
 		"@typescript-eslint/no-unsafe-assignment": "off",
+		"@typescript-eslint/no-unsafe-return": "off",
 		"no-restricted-imports": [
 			"error",
 			{
