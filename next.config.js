@@ -3,7 +3,7 @@ const nextConfig = {
 	pageExtensions: ['ts', 'tsx', 'mdx'],
 	experimental: {
 		// typedRoutes: true,
-		mdxRs: true,
+		// mdxRs: true,
 	},
 };
 
