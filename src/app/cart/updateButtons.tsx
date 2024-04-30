@@ -1,6 +1,6 @@
 "use client";
 
-import { experimental_useOptimistic as useOptimistic } from "react";
+import { useOptimistic } from "react";
 import { changeItemQuantity, removeItem } from "@/app/cart/actions";
  
 export function UpdateButtons({ itemId, quantity }: { itemId: string; quantity: number }) {
